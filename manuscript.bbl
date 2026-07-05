@@ -55,10 +55,11 @@ A.~Decelle, F.~Krzakala, C.~Moore, L.~Zdeborov\'a,
 
 \bibitem{ringpaper}
 A.~Vazquez, The ring wants to be broken: an exactly solvable {Ramsey} community
-  numberCompanion paper (2025).
+  number, Companion paper (2025).
+\newblock \href {http://arxiv.org/abs/2607.01967} {\path{arXiv:2607.01967}}.
 
 \bibitem{pseudopaper}
-A.~Vazquez, The pseudofractal web wants to be brokenCompanion paper (2025).
+A.~Vazquez, The pseudofractal web wants to be broken, Companion paper (2025).
 
 \bibitem{dgm2002}
 S.~N. Dorogovtsev, A.~V. Goltsev, J.~F.~F. Mendes,
