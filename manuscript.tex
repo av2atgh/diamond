@@ -1,4 +1,4 @@
-\documentclass[aps,pre,twocolumn,superscriptaddress,floatfix]{revtex4-2}
+\documentclass[preprint,12pt]{elsarticle}
 
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -12,13 +12,16 @@
 \newcommand{\Om}{\Omega}
 \newcommand{\Nof}{n_t}
 
+\journal{Physica A}
+
 \begin{document}
+
+\begin{frontmatter}
 
 \title{The Ramsey community number as a renormalization-group crossing}
 
 \author{Alexei Vazquez}
-\affiliation{Nodes \& Links Ltd, Cambridge, United Kingdom}
-\date{\today}
+\affiliation{organization={Nodes \& Links Ltd}, city={Cambridge}, country={United Kingdom}}
 
 \begin{abstract}
 The Ramsey community number $\rk$ is the smallest size at which a network is
@@ -42,7 +45,12 @@ fall as $1/\ln q$, so every stable level persists as $n\to\infty$: the emergent
 partition is detectable, optimal, and thermodynamically ordered.
 \end{abstract}
 
-\maketitle
+\begin{keyword}
+community detection \sep renormalization group \sep hierarchical lattices \sep
+Ramsey community number \sep Potts model
+\end{keyword}
+
+\end{frontmatter}
 
 \section{Introduction}
 \label{sec:intro}
@@ -178,17 +186,17 @@ become ever more cleanly separated as the lattice grows.
   \caption{Closed-form block-pair statistics of the bundle cut,
   Eq.~\eqref{eq:counts}, verified against direct construction through $t=7$.}
   \label{tab:counts}
-  \begin{ruledtabular}
   \begin{tabular}{lcccccc}
+    \toprule
     $t$ & $\Nof$ & $e_{11}$ & $e_{22}$ & $e_{12}$ & $\kappa_1$ & $\kappa_2$\\
-    \colrule
+    \midrule
     1 & 4    & 2    & 0    & 2  & 6    & 2   \\
     2 & 12   & 8    & 4    & 4  & 20   & 12  \\
     3 & 44   & 32   & 24   & 8  & 72   & 56  \\
     4 & 172  & 128  & 112  & 16 & 272  & 240 \\
     5 & 684  & 512  & 480  & 32 & 1056 & 992 \\
+    \bottomrule
   \end{tabular}
-  \end{ruledtabular}
 \end{table}
 
 \section{The renormalization-group map}
@@ -274,10 +282,10 @@ both evidences explicit functions of $t$; all evaluations use
   $\ln K=\ln2=0.693$. The degree-corrected split is favored from $t=2$, the
   plain split only from $t=5$.}
   \label{tab:evidence}
-  \begin{ruledtabular}
   \begin{tabular}{lrrrr}
+    \toprule
     $t$ & $\Nof$ & $\logR_{\rm dc}$ & $\logR_{\rm pl}$ & $\logR_{\rm dc}/m$\\
-    \colrule
+    \midrule
     2  & 12     & $0.03$    & $-5.60$   & $0.002$\\
     3  & 44     & $16.32$   & $-11.77$  & $0.255$\\
     4  & 172    & $111.86$  & $-6.04$   & $0.437$\\
@@ -286,8 +294,8 @@ both evidences explicit functions of $t$; all evaluations use
     7  & 10924  & $10597.0$ & $3021.1$  & $0.647$\\
     8  & 43692  & $43738.3$ & $13447.4$ & $0.667$\\
     10 & 699052 & $718680$  & $234124$  & $0.685$\\
+    \bottomrule
   \end{tabular}
-  \end{ruledtabular}
 \end{table}
 
 \begin{figure*}[tb]
@@ -404,14 +412,14 @@ two found for the pseudofractal, which is therefore not universal.
   \caption{Ramsey community number $\rk(q)=\Nof|_{t_\star}$ for the bundle cut
   ($\alpha=1$). Degree correction advances detection from generation 5 to 3.}
   \label{tab:rk}
-  \begin{ruledtabular}
   \begin{tabular}{lcc}
+    \toprule
     $q$ & degree corrected & plain \\
-    \colrule
+    \midrule
     $0.5$   & $n_2=12$ & $n_5=684$\\
     $0.9$--$0.999$ & $n_3=44$ & $n_5=684$\\
+    \bottomrule
   \end{tabular}
-  \end{ruledtabular}
 \end{table}
 
 \section{The general \texorpdfstring{$(b,s)$}{(b,s)} family}
@@ -780,13 +788,12 @@ itself a genuine phase transition~\cite{decelle2011}.
 
 
 
-\begin{acknowledgments}
+\section*{Acknowledgements}
 The calculations, computer scripts, and text of this manuscript were generated
 with the assistance of Claude Opus 4.8 (Anthropic).
-\end{acknowledgments}
 
 \vspace{4pt}
-\bibliographystyle{apsrev4-2}
+\bibliographystyle{elsarticle-num}
 \bibliography{refs}
 
 \end{document}

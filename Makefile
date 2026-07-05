@@ -1,6 +1,6 @@
-# Build the figures and compile the manuscript (Physical Review E).
+# Build the figures and compile the manuscript (Physica A).
 # Requires: python3 (numpy, networkx, mpmath, matplotlib) and TeX Live with
-# REVTeX 4.2 (Debian/Ubuntu package texlive-publishers).
+# Elsevier elsarticle (Debian/Ubuntu package texlive-publishers).
 
 TEX = pdflatex -interaction=nonstopmode -halt-on-error
 

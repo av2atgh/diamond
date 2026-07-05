@@ -4,7 +4,8 @@ Reproducibility package for the manuscript
 
 > **The Ramsey community number as a renormalization-group crossing**
 
-submitted to *Physical Review E* (REVTeX 4.2, `aps,pre,twocolumn`). Third in
+submitted to *Physica A: Statistical Mechanics and its Applications*
+(Elsevier `elsarticle`, `preprint,12pt`). Third in
 the "wants to be broken" series, after the ring and the pseudofractal web.
 
 ## What is shown
@@ -45,11 +46,11 @@ community partition is not merely detectable but **thermodynamically ordered**:
 
 | file | description |
 |------|-------------|
-| `manuscript.tex` | REVTeX 4.2 source (`aps,pre,twocolumn`) — the full paper, all derivations in-text |
+| `manuscript.tex` | Elsevier `elsarticle` source (`preprint,12pt`) — the full paper, all derivations in-text |
 | `manuscript.pdf` | compiled manuscript |
 | `manuscript.bbl` | processed bibliography (include with submission) |
 | `refs.bib`       | BibTeX references |
-| `cover_letter.txt` | cover letter to the *Physical Review E* editor (plain text) |
+| `cover_letter.txt` | cover letter to the *Physica A* editor (plain text) |
 
 ### Tables
 
@@ -110,7 +111,7 @@ Kept for the record; not wired to any manuscript table or figure:
 ## Reproduce
 
 Requirements: Python 3 with `numpy`, `networkx`, `mpmath`, `matplotlib`; a TeX
-Live installation including REVTeX 4.2 (Debian/Ubuntu package
+Live installation including Elsevier `elsarticle` (Debian/Ubuntu package
 `texlive-publishers`).
 
 ```sh
