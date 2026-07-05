@@ -9,12 +9,16 @@ TEX = pdflatex -interaction=nonstopmode -halt-on-error
 all: pdf
 
 # ----------------------------------------------------------------- figures
-# Five figures enter the manuscript:
-#   Fig. 1  fig_lattice.pdf   Fig. 2  fig_data.pdf      (make_figures.py)
-#   Fig. 3  fig_rb.pdf        (make_rb_figure.py    -> rb_fast.py, rb_exact_gf.py)
-#   Fig. 4  fig_hier.pdf      (make_hier_figure.py  -> rb_potts_hier.py)
-#   Fig. 5  fig_potts.pdf     (make_potts_figure.py -> rb_potts_decimation.py)
-figures: fig_lattice.pdf fig_data.pdf fig_rb.pdf fig_hier.pdf fig_potts.pdf
+# Six figures enter the manuscript:
+#   Fig. 1  fig_lattice.pdf       Fig. 3  fig_data.pdf   (make_figures.py)
+#   Fig. 2  fig_construction.pdf  (make_construction_figure.py -> diamond_rg.py)
+#   Fig. 4  fig_rb.pdf        (make_rb_figure.py    -> rb_fast.py, rb_exact_gf.py)
+#   Fig. 5  fig_hier.pdf      (make_hier_figure.py  -> rb_potts_hier.py)
+#   Fig. 6  fig_potts.pdf     (make_potts_figure.py -> rb_potts_decimation.py)
+figures: fig_construction.pdf fig_lattice.pdf fig_data.pdf fig_rb.pdf fig_hier.pdf fig_potts.pdf
+
+fig_construction.pdf: make_construction_figure.py diamond_rg.py
+	python3 make_construction_figure.py
 
 # make_figures.py also emits the standalone fig_evidence.pdf / fig_flow.pdf,
 # which are not used by the manuscript.
@@ -54,5 +58,6 @@ verify:
 # ----------------------------------------------------------------- clean
 clean:
 	rm -f *.aux *.log *.out *.blg *.bbl manuscript.pdf \
-	      fig_lattice.pdf fig_data.pdf fig_evidence.pdf fig_flow.pdf \
+	      fig_construction.pdf fig_lattice.pdf fig_data.pdf \
+	      fig_evidence.pdf fig_flow.pdf \
 	      fig_rb.pdf fig_hier.pdf fig_potts.pdf

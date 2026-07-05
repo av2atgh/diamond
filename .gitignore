@@ -1,5 +1,6 @@
 cover_letter.txt
 manuscriptNotes.bib
+__pycache__/
 
 # LaTeX build artifacts
 *.aux

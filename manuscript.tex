@@ -146,7 +146,8 @@ optimal, and thermodynamically ordered.
 The $(b,s)$ diamond lattice is grown by edge replacement. Starting from a
 single bond between two poles $A$ and $B$, each generation replaces every edge
 by $b$ parallel paths of $s$ edges; the $s\!-\!1$ interior vertices of every
-path are new. We present the standard diamond $b=s=2$, which is also the
+path are new (Fig.~\ref{fig:construction}). We present the standard diamond
+$b=s=2$, which is also the
 $(2,2)$-flower of the recursive scale-free nets~\cite{rozenfeld2007}, and note
 the general spectrum where it is established. After $t$ generations the lattice
 has
@@ -158,6 +159,19 @@ has
 A vertex born at generation $k$ has degree $2\cdot2^{\,t-k}$, and the poles are
 permanent hubs of degree $b^t=2^t$: the lattice is strongly degree heterogeneous,
 which is what makes the plain versus degree-corrected comparison nontrivial.
+
+\begin{figure*}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{fig_construction.pdf}
+  \caption{Construction of the diamond hierarchical lattice for $b=s=2$ by
+  edge replacement. Starting from a single bond between the poles $A,B$
+  ($t=0$), each generation replaces every edge by $b=2$ parallel paths of
+  $s=2$ edges, adding one interior vertex per path; iterating gives $m=4^t$
+  edges and $\Nof=(2\cdot4^t+4)/3$ nodes [Eq.~\eqref{eq:sizes}]. Node area
+  $\propto$ degree, so the two poles emerge as the permanent degree-$2^t$
+  hubs.}
+  \label{fig:construction}
+\end{figure*}
 
 The self-similar community structure is the pair of parallel bundles between
 the poles. Label the two bundles created at $t=1$ and let every later vertex
