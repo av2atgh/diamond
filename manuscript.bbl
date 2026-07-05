@@ -53,13 +53,17 @@ A.~Decelle, F.~Krzakala, C.~Moore, L.~Zdeborov\'a,
   {\path{doi:10.1103/PhysRevLett.107.065701}}.
 \newline\urlprefix\url{https://doi.org/10.1103/PhysRevLett.107.065701}
 
+\bibitem{d7kf-s1cf}
+A.~Vazquez, \href{https://link.aps.org/doi/10.1103/d7kf-s1cf}{Emergence of
+  network communities driven by local rules}, Phys. Rev. E 111 (2025) 064314.
+\newblock \href {https://doi.org/10.1103/d7kf-s1cf}
+  {\path{doi:10.1103/d7kf-s1cf}}.
+\newline\urlprefix\url{https://link.aps.org/doi/10.1103/d7kf-s1cf}
+
 \bibitem{ringpaper}
 A.~Vazquez, The ring wants to be broken: an exactly solvable {Ramsey} community
   number, Companion paper (2025).
 \newblock \href {http://arxiv.org/abs/2607.01967} {\path{arXiv:2607.01967}}.
-
-\bibitem{pseudopaper}
-A.~Vazquez, The pseudofractal web wants to be broken, Companion paper (2025).
 
 \bibitem{dgm2002}
 S.~N. Dorogovtsev, A.~V. Goltsev, J.~F.~F. Mendes,
@@ -68,6 +72,9 @@ S.~N. Dorogovtsev, A.~V. Goltsev, J.~F.~F. Mendes,
 \newblock \href {https://doi.org/10.1103/PhysRevE.65.066122}
   {\path{doi:10.1103/PhysRevE.65.066122}}.
 \newline\urlprefix\url{https://doi.org/10.1103/PhysRevE.65.066122}
+
+\bibitem{pseudopaper}
+A.~Vazquez, The pseudofractal web wants to be broken, Companion paper (2025).
 
 \bibitem{migdal1976}
 A.~A. Migdal, Phase transitions in gauge and spin-lattice systems, Sov. Phys.
