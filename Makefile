@@ -10,8 +10,8 @@ all: pdf
 
 # ----------------------------------------------------------------- figures
 # Six figures enter the manuscript:
-#   Fig. 1  fig_lattice.pdf       Fig. 3  fig_data.pdf   (make_figures.py)
-#   Fig. 2  fig_construction.pdf  (make_construction_figure.py -> diamond_rg.py)
+#   Fig. 1  fig_construction.pdf  (make_construction_figure.py -> diamond_rg.py)
+#   Fig. 2  fig_lattice.pdf       Fig. 3  fig_data.pdf   (make_figures.py)
 #   Fig. 4  fig_rb.pdf        (make_rb_figure.py    -> rb_fast.py, rb_exact_gf.py)
 #   Fig. 5  fig_hier.pdf      (make_hier_figure.py  -> rb_potts_hier.py)
 #   Fig. 6  fig_potts.pdf     (make_potts_figure.py -> rb_potts_decimation.py)
