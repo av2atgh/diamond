@@ -251,24 +251,53 @@ the sharpness of their separation.
 \label{sec:evidence}
 
 We now let the evidence ride this flow. The detection rule is that of the
-companion works~\cite{ringpaper,pseudopaper}. The degree-corrected model is a
-Poisson block model whose null is the configuration model---random wiring at
-fixed degrees---so that any split favored by it reflects structure beyond the
-degree sequence~\cite{karrer2011}. With symmetric $\Gamma(\alpha,\alpha)$
-priors (mean one) on the block affinities and configuration expectations
-$\Om_{rr}=\kappa_r^2/4m$, $\Om_{rs}=\kappa_r\kappa_s/2m$ ($r\neq s$), the
-degree-only and combinatorial factors cancel between numerator and
-denominator, leaving
+companion works~\cite{ringpaper,pseudopaper}; we recall its degree-corrected
+construction in enough detail that Eq.~\eqref{eq:dc} can be read off directly.
+Following Ref.~\cite{pseudopaper}, the graph is modeled as a Poisson multigraph
+with degree-corrected rates
+$\langle A_{ij}\rangle=\theta_i\theta_j\,\omega_{g_ig_j}$, where
+$\theta_i=k_i/\sqrt{2m}$ carries the degree of node $i$ ($2m=\sum_i k_i$) and
+$g_i$ is its block. The null $\omega_{rs}\equiv1$ is then the configuration
+model---random wiring at fixed degrees~\cite{karrer2011}---so that any split it
+favors reflects structure beyond the degree sequence. The affinities then have
+configuration-model edge expectations $\Om_{rr}=\kappa_r^2/4m$ and
+$\Om_{rs}=\kappa_r\kappa_s/2m$ ($r\neq s$), with $\kappa_r$ the degree sum of
+block $r$ and $\sum_{r\le s}\Om_{rs}=m$. The Poisson likelihood factorizes
+over block pairs, $P(A\mid\omega,g)=C(A,\bm k)\prod_{r\le s}
+\omega_{rs}^{\,e_{rs}}e^{-\omega_{rs}\Om_{rs}}$, and its prefactor $C(A,\bm k)$
+depends only on the fixed degrees and adjacency, not on the partition; it is
+this factor---the degree-only and combinatorial part---that cancels in any
+evidence ratio. Placing a symmetric conjugate prior
+$\omega_{rs}\sim\Gamma(\alpha,\alpha)$ (mean one, centered on the configuration
+model) and integrating each affinity out leaves the marginal evidence of one
+block pair,
+\begin{equation}
+  Z(e,\Om)=\frac{\alpha^\alpha}{\Gamma(\alpha)}\int_0^\infty\!
+    \omega^{\,e+\alpha-1}e^{-(\Om+\alpha)\omega}\,d\omega
+    =\frac{\alpha^\alpha}{\Gamma(\alpha)}\,
+     \frac{\Gamma(e{+}\alpha)}{(\Om{+}\alpha)^{e+\alpha}} .
+  \label{eq:Zdc}
+\end{equation}
+The evidence for the split is the product of these factors over the occupied
+block pairs, divided by the single-block null---one pair comprising the whole
+graph, with $e\!\to\!m$ and $\Om\!\to\!m$. Taking logarithms,
+$\logR_{\rm dc}=\sum_{r\le s}\ln Z(e_{rs},\Om_{rs})-\ln Z(m,m)$, and inserting
+Eq.~\eqref{eq:Zdc},
 \begin{align}
   \logR_{\rm dc}
-  &= \sum_{r\le s}\!\Big[\ln\Gamma(e_{rs}{+}\alpha)
-      -(e_{rs}{+}\alpha)\ln(\Om_{rs}{+}\alpha) \notag\\
-  &\hspace{2.2em} +\,\alpha\ln\alpha-\ln\Gamma(\alpha)\Big]
-     \;-\;\big[\,e\!\to\!m,\ \Om\!\to\!m\,\big],
+  &= \sum_{r\le s}\Big[\ln\Gamma(e_{rs}{+}\alpha)
+      -(e_{rs}{+}\alpha)\ln(\Om_{rs}{+}\alpha)
+      +\alpha\ln\alpha-\ln\Gamma(\alpha)\Big] \notag\\
+  &\quad -\Big[\ln\Gamma(m{+}\alpha)-(m{+}\alpha)\ln(m{+}\alpha)
+      +\alpha\ln\alpha-\ln\Gamma(\alpha)\Big],
   \label{eq:dc}
 \end{align}
-where the bracketed subtraction is the single-block null, whose configuration
-expectation is $m$ itself. For contrast we also evaluate the plain Bernoulli
+where the second bracket is the null term $\ln Z(m,m)$---the whole graph as a
+single block, so that $e\!\to\!m$ and $\Om\!\to\!m$, with no cross term. The
+$\alpha\ln\alpha-\ln\Gamma(\alpha)$ pieces do not fully cancel: the split sum
+carries three of them (one per block pair) against the null's one, leaving a net
+Occam factor $[\alpha^\alpha/\Gamma(\alpha)]^{2}$ for the two extra
+affinities. For contrast we also evaluate the plain Bernoulli
 block model with symmetric $B(\alpha,\alpha)$ priors, including the label-prior
 factor $B(n_1{+}\alpha,n_2{+}\alpha)$ whose omission spuriously favors any
 split~\cite{pseudopaper}. Inserting the closed forms~\eqref{eq:counts} makes

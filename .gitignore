@@ -1,2 +1,16 @@
 cover_letter.txt
 manuscriptNotes.bib
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.blg
+*.spl
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.toc
+*.lof
+*.lot
+manuscript.pdf
