@@ -60,10 +60,11 @@ A.~Vazquez, \href{https://link.aps.org/doi/10.1103/d7kf-s1cf}{Emergence of
   {\path{doi:10.1103/d7kf-s1cf}}.
 \newline\urlprefix\url{https://link.aps.org/doi/10.1103/d7kf-s1cf}
 
-\bibitem{ringpaper}
-A.~Vazquez, The ring wants to be broken: an exactly solvable {Ramsey} community
-  number, Companion paper (2025).
+\bibitem{vazquez2026ringwantsbroken}
+A.~Vazquez, \href{https://arxiv.org/abs/2607.01967}{The ring wants to be
+  broken} (2026).
 \newblock \href {http://arxiv.org/abs/2607.01967} {\path{arXiv:2607.01967}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2607.01967}
 
 \bibitem{dgm2002}
 S.~N. Dorogovtsev, A.~V. Goltsev, J.~F.~F. Mendes,
