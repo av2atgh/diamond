@@ -1295,31 +1295,41 @@ persistent, form of order.
 \section{Conclusions}
 \label{sec:conclusions}
 
-Within this exactly solvable arena the conclusion is complete. The Ramsey
-community number is the generation at which the extensive evidence---driven by
-the volume eigenvalue of the exact map $M$ and reaching the density $\ln K$ per
-edge at the community fixed point---first clears the detection threshold. It is
-therefore computed, not fitted; and we have shown in Sec.~\ref{sec:tworeadings}
-where the crossing reading and the asymptotic-slope reading part company,
-namely at every certainty a practitioner would use, where the slope estimate
-underestimates $\rk$ by one or two generations because the evidence density is
-still tens of percent short of $\ln K$. On the same lattice the
-Reichardt--Bornholdt community Hamiltonian has an exact thermodynamic
-community-ordered phase, in which the two hubs occupy opposite communities
-below the ferromagnetic critical temperature and the order persists as
-$n\to\infty$, so the emergent partition is not only detectable but
-thermodynamically stable; its optimal refinement is a nested hierarchy cut at
-half the depth of the lattice, whose levels become rigid one after another at
-temperatures falling as $3/(2\ln K)$.
+We have computed the Ramsey community number $\rk$ on the diamond hierarchical
+lattice, where every quantity involved is exact. The results are as follows.
 
-We have also clarified two comparisons that the earlier literature had
-conflated. Degree correction and the node-labelling prior are different things,
-and on this lattice---whose bundle cut is balanced in both node number and
-degree---it is the labelling prior alone that separates the ``plain'' from the
-``degree-corrected'' curve, at a cost of $n\ln K$ and a density ratio of
-$(1-n/m)^{-1}$. And the sharpening of the community order parameter with size
-is finite-size scaling at a continuous transition, at every number of
-communities, rather than the onset of a first-order jump.
+The block statistics of the bundle partition obey an exact linear map $M$ with a
+volume eigenvalue $bs$ and a seam eigenvalue $b$ (Sec.~\ref{sec:rgmap}). The
+evidence density is carried by this flow to $\ln K$ per edge at the community
+fixed point (Sec.~\ref{sec:fixedpoint}), and $\rk$ is the first generation at
+which the accumulated evidence clears the detection threshold
+(Sec.~\ref{sec:rk}). It is therefore computed rather than fitted, and a closed
+form holds for the whole $(b,s)$ family (Sec.~\ref{sec:general}). That closed
+form is asymptotic: it reproduces the exact crossing only for
+$L=\ln[q/(1-q)]\gtrsim10^5$, and at the certainties used in practice it
+underestimates $\rk$ by one or two generations, because the evidence density is
+then still $37$--$63\%$ short of $\ln K$ (Secs.~\ref{sec:asymptotic}
+and~\ref{sec:tworeadings}).
+
+The same lattice carries a thermodynamic counterpart. The ground state of the
+Reichardt--Bornholdt Hamiltonian is the staggered cut, lower than the bundle cut
+by exactly $\gamma$ at every size (Sec.~\ref{sec:gs}). Below the ferromagnetic
+critical temperature the two hubs occupy opposite communities, and the order
+persists as $n\to\infty$, for every resolution $\gamma>0$ (Sec.~\ref{sec:rb}).
+The modularity-optimal refinement is a nested hierarchy cut at half the depth of
+the lattice, with $K_{\rm opt}=\sqrt{\gamma}\,m^{1/4}$ communities
+(Sec.~\ref{sec:hier}), and each level orders at its own temperature, with
+$k_BT_c/J\to3/(2\ln K)$ (Sec.~\ref{sec:pottsT}).
+
+Two comparisons reported previously require correction. First, degree
+correction and the node-labelling prior are distinct effects. The bundle cut of
+this lattice is balanced in node number and in degree, so the plain and
+degree-corrected evidences agree to $O(\ln m)$ and give the same $\rk$; what
+separates them is the labelling prior alone, worth $n\ln K$, and the ratio of
+the two evidence densities is $(1-n/m)^{-1}$ (Sec.~\ref{sec:priors}). Second,
+the sharpening of the community order parameter with size is finite-size scaling
+at a continuous transition, for every $K$, and not the onset of a first-order
+jump (Sec.~\ref{sec:pottsT}).
 
 Several directions follow. The nested hierarchy found here has its optimal cut
 at half the depth of the lattice, a statement free of lattice-specific
