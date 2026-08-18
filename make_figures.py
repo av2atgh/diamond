@@ -4,7 +4,8 @@ import numpy as np, networkx as nx, math
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from diamond_rg import diamond, closed, logR_dc_cf, logR_plain_cf, densities, Nof
+from diamond_rg import (diamond, closed, logR_dc_cf, logR_plain_cf,
+                        logR_plain_cond_cf, logR_dc_lab_cf, densities, Nof)
 
 plt.rcParams.update({
     "font.family": "serif", "font.serif": ["DejaVu Serif"],
@@ -18,54 +19,78 @@ COL = 3.375  # PRE single-column width (inches)
 DC, PL, SEAM, DARK = "#2a9d8f", "#d1495b", "#e9c46a", "#264653"
 
 
-# ---------------- Figure 1: lattice + bundle cut ----------------
+# ---------------- Figure 1: the two top-level cuts ----------------
 def fig_lattice():
+    """(a) the bundle cut tested by the Bayesian evidence; (b) the staggered cut
+    that minimises the Reichardt-Bornholdt energy -- same seam edges, but one
+    hub in each block."""
     G, poles, part = diamond(3)
     A, B = 0, 1
     pos = nx.spring_layout(G, k=0.30, iterations=700, seed=3,
                            pos={A: np.array([-1, 0.]), B: np.array([1, 0.])}, fixed=[A, B])
-    fig, ax = plt.subplots(figsize=(COL, COL * 0.86))
-    within = [(u, v) for u, v in G.edges() if part[u] == part[v]]
-    seam = [(u, v) for u, v in G.edges() if part[u] != part[v]]
-    nx.draw_networkx_edges(G, pos, edgelist=within, edge_color="#c9ccd1", width=0.9, ax=ax)
-    nx.draw_networkx_edges(G, pos, edgelist=seam, edge_color=SEAM, width=2.0, ax=ax)
-    col = [PL if part[n] == 0 else DC for n in G]
-    sz = [230 if n in poles else 42 for n in G]
-    nx.draw_networkx_nodes(G, pos, node_color=col, node_size=sz,
-                           edgecolors="white", linewidths=0.6, ax=ax)
-    nx.draw_networkx_labels(G, pos, labels={A: "A", B: "B"},
-                            font_size=9, font_color="white", font_weight="bold", ax=ax)
-    ax.set_axis_off()
-    ax.margins(0.08)
+    bundle = {n: (0 if part[n] == 0 else 1) for n in G}
+    stag = dict(bundle); stag[B] = 1          # hand pole B to the other block
+
+    fig, axes = plt.subplots(1, 2, figsize=(COL * 2.0, COL * 0.86))
+    for ax, lab, blk, title in [
+            (axes[0], "(a)", bundle, "bundle cut (detection)"),
+            (axes[1], "(b)", stag, "staggered cut (RB ground state)")]:
+        within = [(u, v) for u, v in G.edges() if blk[u] == blk[v]]
+        seam = [(u, v) for u, v in G.edges() if blk[u] != blk[v]]
+        nx.draw_networkx_edges(G, pos, edgelist=within, edge_color="#c9ccd1", width=0.9, ax=ax)
+        nx.draw_networkx_edges(G, pos, edgelist=seam, edge_color=SEAM, width=2.0, ax=ax)
+        col = [PL if blk[n] == 0 else DC for n in G]
+        sz = [230 if n in poles else 42 for n in G]
+        nx.draw_networkx_nodes(G, pos, node_color=col, node_size=sz,
+                               edgecolors="white", linewidths=0.6, ax=ax)
+        nx.draw_networkx_labels(G, pos, labels={A: "A", B: "B"},
+                                font_size=9, font_color="white", font_weight="bold", ax=ax)
+        ax.set_axis_off(); ax.margins(0.08)
+        ax.set_title(f"{lab} {title}", fontsize=7.5)
     fig.tight_layout(pad=0.2)
     fig.savefig("fig_lattice.pdf", bbox_inches="tight")
     plt.close(fig)
 
 
-# ---------------- Figure 2: evidence vs generation ----------------
 def fig_evidence():
+    """Standalone version of panel (a): evidence in the two prior conventions."""
     ts = list(range(1, 10))
-    dc = [logR_dc_cf(t, 1.0) for t in ts]
-    pl = [logR_plain_cf(t, 1.0) for t in ts]
     fig, ax = plt.subplots(figsize=(COL, COL * 0.82))
-    ax.axhline(0, color="#999", lw=0.7)
-    thr = math.log(0.99 / 0.01)
-    ax.axhline(thr, color="#bbb", ls=":", lw=0.8)
-    ax.text(9, thr * 1.7, r"$q=0.99$", ha="right", va="bottom", fontsize=6.8, color="#777")
-    ax.plot(ts, dc, "-o", color=DC, ms=3.4, label="degree corrected")
-    ax.plot(ts, pl, "-s", color=PL, ms=3.4, label="plain")
-    ax.axvline(3, color=DC, ls="--", lw=0.8, alpha=.55)
-    ax.axvline(5, color=PL, ls="--", lw=0.8, alpha=.55)
-    ax.set_yscale("symlog", linthresh=1.0)
-    ax.set_xlabel(r"generation $t$")
-    ax.set_ylabel(r"$\log R$")
-    ax.set_xticks(ts)
-    ax.legend(loc="upper left", frameon=False, handlelength=1.6)
-    ax.text(3.05, -8, r"$r_\kappa=n_3=44$", color=DC, fontsize=6.6, rotation=90, va="center")
-    ax.text(5.05, -8, r"$r_\kappa=n_5=684$", color=PL, fontsize=6.6, rotation=90, va="center")
+    _evidence_panel(ax, ts, fontscale=1.0)
     fig.tight_layout(pad=0.3)
     fig.savefig("fig_evidence.pdf", bbox_inches="tight")
     plt.close(fig)
+
+
+def _evidence_panel(ax, ts, fontscale=1.0):
+    """log R vs generation for both models in both prior conventions.
+
+    Within a convention the plain and degree-corrected curves are
+    indistinguishable on this scale; the two conventions differ by the
+    node-labelling prior Lambda_t -> -n ln K, which moves the crossing by two
+    generations."""
+    dc = [logR_dc_cf(t, 1.0) for t in ts]
+    pc = [logR_plain_cond_cf(t, 1.0) for t in ts]
+    dl = [logR_dc_lab_cf(t, 1.0) for t in ts]
+    pl = [logR_plain_cf(t, 1.0) for t in ts]
+    fs = 6.8 * fontscale
+    ax.axhline(0, color="#999", lw=0.7)
+    thr = math.log(0.99 / 0.01)
+    ax.axhline(thr, color="#bbb", ls=":", lw=0.8)
+    ax.text(ts[-1], thr * 1.7, r"$q=0.99$", ha="right", va="bottom",
+            fontsize=fs * 0.95, color="#777")
+    ax.plot(ts, dc, "-o", color=DC, ms=3.2, label="conditional, deg. corr.")
+    ax.plot(ts, pc, "--s", color=DC, ms=3.2, mfc="white", label="conditional, plain")
+    ax.plot(ts, dl, "-o", color=PL, ms=3.2, label="+ labelling prior, deg. corr.")
+    ax.plot(ts, pl, "--s", color=PL, ms=3.2, mfc="white", label="+ labelling prior, plain")
+    ax.axvline(3, color=DC, ls="--", lw=0.8, alpha=.55)
+    ax.axvline(5, color=PL, ls="--", lw=0.8, alpha=.55)
+    ax.set_yscale("symlog", linthresh=1.0)
+    ax.set_xlabel(r"generation $t$"); ax.set_ylabel(r"$\log R$")
+    ax.set_xticks(ts)
+    ax.legend(loc="upper left", frameon=False, handlelength=1.5, fontsize=fs * 0.92)
+    ax.text(3.05, -60, r"$r_\kappa=44$", color=DC, fontsize=fs * 0.9, rotation=90, va="center")
+    ax.text(5.05, -60, r"$r_\kappa=684$", color=PL, fontsize=fs * 0.9, rotation=90, va="center")
 
 
 # ---------------- Figure 3: RG flow to the community fixed point ----------------
@@ -103,27 +128,12 @@ def fig_flow():
 # -------- Combined double-column data figure (evidence | flow) for PRL --------
 def fig_data():
     ts = list(range(1, 10))
-    dc = [logR_dc_cf(t, 1.0) for t in ts]
-    pl = [logR_plain_cf(t, 1.0) for t in ts]
     uin = [densities(t)[1] for t in ts]
     ucr = [densities(t)[2] for t in ts]
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6.9, 2.55))
 
-    # (a) evidence vs generation
-    ax1.axhline(0, color="#999", lw=0.7)
-    thr = math.log(0.99 / 0.01)
-    ax1.axhline(thr, color="#bbb", ls=":", lw=0.8)
-    ax1.text(9, thr * 1.7, r"$q=0.99$", ha="right", va="bottom", fontsize=6.6, color="#777")
-    ax1.plot(ts, dc, "-o", color=DC, ms=3.2, label="degree corrected")
-    ax1.plot(ts, pl, "-s", color=PL, ms=3.2, label="plain")
-    ax1.axvline(3, color=DC, ls="--", lw=0.8, alpha=.55)
-    ax1.axvline(5, color=PL, ls="--", lw=0.8, alpha=.55)
-    ax1.set_yscale("symlog", linthresh=1.0)
-    ax1.set_xlabel(r"generation $t$"); ax1.set_ylabel(r"$\log R$")
-    ax1.set_xticks(ts)
-    ax1.legend(loc="upper left", frameon=False, handlelength=1.5, fontsize=6.8)
-    ax1.text(3.05, -8, r"$r_\kappa=44$", color=DC, fontsize=6.2, rotation=90, va="center")
-    ax1.text(5.05, -8, r"$r_\kappa=684$", color=PL, fontsize=6.2, rotation=90, va="center")
+    # (a) evidence vs generation, both prior conventions
+    _evidence_panel(ax1, ts, fontscale=1.0)
     ax1.set_title("(a)", loc="left", fontsize=8, fontweight="bold")
 
     # (b) RG flow

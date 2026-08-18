@@ -100,6 +100,14 @@ A.~N. Berker, S.~Ostlund,
   {\path{doi:10.1088/0022-3719/12/22/035}}.
 \newline\urlprefix\url{https://doi.org/10.1088/0022-3719/12/22/035}
 
+\bibitem{kaufman1981}
+M.~Kaufman, R.~B. Griffiths,
+  \href{https://doi.org/10.1103/PhysRevB.24.496}{Exactly soluble {Ising} models
+  on hierarchical lattices}, Phys. Rev. B 24 (1981) 496.
+\newblock \href {https://doi.org/10.1103/PhysRevB.24.496}
+  {\path{doi:10.1103/PhysRevB.24.496}}.
+\newline\urlprefix\url{https://doi.org/10.1103/PhysRevB.24.496}
+
 \bibitem{griffiths1982}
 R.~B. Griffiths, M.~Kaufman,
   \href{https://doi.org/10.1103/PhysRevB.26.5022}{Spin systems on hierarchical

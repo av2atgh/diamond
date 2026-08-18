@@ -1,0 +1,765 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\usepackage{parskip}
+
+\newcommand{\rk}{r_{\kappa}}
+\newcommand{\Rev}{\mathcal{R}}
+\newcommand{\logR}{\log \Rev}
+
+\newenvironment{point}{\begin{quote}\itshape}{\end{quote}}
+\newcommand{\reply}{\par\noindent\textbf{Response.}\ }
+
+\title{\vspace{-2em}Response to reviewers\\[4pt]
+\large Ms.\ Ref.\ No.: PHYSA-262689\\
+\large ``The Ramsey community number as a renormalization-group crossing''\\
+\large \textit{Physica A: Statistical Mechanics and its Applications}}
+\author{Alexei Vazquez}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Summary}
+
+I thank the Editor and the three reviewers for a careful and genuinely useful
+reading. The manuscript has been substantially revised. Reviewer~1's criticism
+of the presentation was well founded and the paper has been rewritten
+throughout for narrative clarity: a plain-language abstract, a completely
+rewritten introduction that defines every quantity before it is used and closes
+with a roadmap of all sections, and an opening paragraph in every section
+stating what that section is for. All specific points are addressed
+individually below.
+
+More importantly, three of the reviewers' questions asked for evidence that the
+manuscript had asserted rather than demonstrated. In checking each of them I
+found that the assertion was in fact \emph{wrong}, and the revision corrects it.
+I want to flag these three corrections at the top, because they are the
+substantive changes in this revision and they arose directly from the reports:
+
+\begin{enumerate}
+\item \textbf{Plain versus degree-corrected detection}
+      (Reviewer~2, point~3). The original claimed that degree correction
+      advances detection by two generations, from $\rk=684$ to $\rk=44$. Asked
+      to confirm that the two comparisons use the same prior convention, I
+      found that they did not. The plain evidence carried a node-labelling
+      prior that the degree-corrected evidence did not. Once both are
+      conditioned on the same prescribed partition, the plain and
+      degree-corrected evidences agree to $O(\ln m)$ and give
+      \emph{identical} $\rk$; the entire reported gap is the labelling prior,
+      worth $-n\ln K$. This also explains, and makes universal, the slope ratio
+      that the original paper had declared non-universal: it is $(1-n/m)^{-1}$,
+      giving $3$ on the diamond and $2$ on a lattice with $n/m\to1/2$. New
+      Sec.~4.2, new Table~2, revised Table~4, revised Fig.~3(a).
+
+\item \textbf{The optimal number of communities} (Reviewer~1, point~9). Asked
+      what the slope of the fit in the right-hand panel of the hierarchy figure
+      is, I measured it: it is $0.250$, not $0.5$. The correct scaling is
+      $K_{\rm opt}=\sqrt{\gamma}\,m^{1/4}\sim n^{1/4}$, not $\sqrt{n}$; the
+      $\sqrt{\cdot}$ in the original was applied to $b^t=\sqrt{m}$ and then
+      mistakenly identified with $n$. The invariant statement---optimal depth
+      at half the depth of the lattice, $d_\star=t/2$---is unchanged. Revised
+      Sec.~10, Eq.~(30), revised Fig.~5(b) with the fitted slope shown.
+
+\item \textbf{The order of the finite-temperature transition} (Reviewer~1,
+      point~8). Asked for evidence that the transition is continuous at $q=2$
+      and first order for larger $q$, I computed two exact diagnostics and
+      found neither supports it. The $10$--$90\%$ width of the step shrinks as
+      $\lambda_T^{-t}$ for \emph{every} $K$ including $K=2$---ordinary
+      finite-size scaling at a continuous transition---and the energy density
+      is continuous through $T_c$ for every $K$, i.e.\ there is no latent heat.
+      The transition is continuous throughout; the apparent jump was a
+      finite-size effect. In the course of this I also obtained the exact
+      large-$K$ asymptote $k_BT_c/J\to3/(2\ln K)$, replacing the previously
+      fitted $c\approx0.70$ by the exact $2/3$. Rewritten Sec.~11, new Table~6,
+      rebuilt Fig.~6.
+\end{enumerate}
+
+A fourth correction, prompted by Reviewer~2's point~2, concerns the
+identification of the ordered partition: the state that orders below
+$T_c^{\rm FM}$ is \emph{not} the bundle cut of Sec.~2, as the original text
+said in passing, but the \emph{staggered} cut that gives one hub to each block.
+The two sever the same $2^t$ seam edges and differ in energy by exactly
+$\gamma$; this is now derived, verified by exhaustive minimisation, and drawn
+(new Sec.~9.1, Eq.~(26), new Fig.~2(b)).
+
+Every number in the revision is reproduced by the accompanying scripts, and a
+new Appendix~A documents the three exact constructions in enough detail to
+reimplement them. The revised manuscript is $33$ pages; a list of all changes
+is given at the end of this letter.
+
+\section*{Reviewer \#1}
+
+\begin{point}
+The authors describe a known merit of figure, the Ramsey community number from
+the renormalization group point of view. The work is promising and potentially
+of significant interest. However, it is very challenging to read it, even for
+experts in the field. The presentation is poorly structured and narrated,
+making the manuscript unnecessarily difficult to follow.
+\end{point}
+
+\reply I accept this criticism. The paper has been rewritten with the
+presentation as the priority: every symbol is now defined in words before it
+appears in an equation, every section opens by stating its purpose, and the
+introduction ends with a roadmap. The specific points are addressed below.
+
+\subsection*{1. The abstract}
+
+\begin{point}
+Already the Abstract is written as a far too difficult and technical text
+without a proper narrative guideline. Such undefined parameters are used which
+are known only by the very experts of the field. I would suggest to replace the
+present version of the Abstract with a simplified version of the 3rd paragraph
+of the Introduction.
+\end{point}
+
+\reply The abstract has been rewritten as suggested, in the narrative style of
+the introduction's overview paragraph. It now opens with the question in plain
+language (``a network has to be large enough before splitting it into
+communities is a better description of it than not splitting it at all''),
+defines $\rk$ verbally, and explains the two eigenvalues in words---``a volume
+eigenvalue $bs$ that multiplies the bulk and a smaller seam eigenvalue $b$ that
+multiplies the boundary between communities, so the boundary becomes relatively
+thinner at every step''---rather than presenting a spectrum. Every symbol that
+survives ($b$, $s$, $K$, $q$, $m$, $n$, $\gamma$) is defined where it appears.
+
+\subsection*{2A. The fourth sentence of the Introduction: the two models, $\Rev$ and $P$}
+
+\begin{point}
+In the fourth sentence, the text presents a highly technical statement that
+ends with the definition of two quantities, R and P. However, neither the two
+models nor those two physical quantities are properly explained.
+\end{point}
+
+\reply The introduction now devotes a full paragraph to this before any formula
+appears. The two models are described explicitly---``the first is a stochastic
+block model: the nodes are divided into blocks, and the probability of an edge
+depends only on which blocks its endpoints belong to, so the model can express
+the statement `these groups exist'. The second is a null model with a single
+block, in which every node is statistically equivalent to every other, so it
+cannot express that statement at all.'' The word \emph{evidence} is then
+defined (``each model assigns a probability to the observed network once its
+parameters are integrated out; these two numbers are the evidences''), $\Rev$
+is introduced as their ratio in Eq.~(1) with an explicit reading, and
+$P(\text{split})$ is separated into its own Eq.~(2) with the decision rule
+spelled out, including its equivalent form $\logR\ge\ln[q/(1-q)]$.
+
+\subsection*{2B. What is ``the split''}
+
+\begin{point}
+The 5th sentence is similarly very puzzling. First of all, what is the split
+mentioned in this sentence.
+\end{point}
+
+\reply The term is now defined explicitly at first use: ``Throughout, we call
+the block-model hypothesis `the split'.'' It denotes the hypothesis that the
+network is better described by a partition into blocks than by none; it is not
+a particular partition being constructed, and no search over partitions is
+performed anywhere in the paper (this is also now stated in the scope paragraph
+of the introduction).
+
+\subsection*{2C. The content of Eq.~(2)}
+
+\begin{point}
+The content, the definition of Eq.~(2) is also unclear after it is based on the
+earlier mentioned unclear text.
+\end{point}
+
+\reply Equation~(2) of the original is now Eq.~(3), and it is preceded by a
+verbal statement of exactly what it means: ``Detection fails on the small
+members of the family and succeeds on the large ones, and the Ramsey community
+number is the smallest size at which it succeeds.'' Since the two ingredients
+it rests on ($\Rev$ and the decision rule) are now defined beforehand, the
+definition should read cleanly. I have also added the reason for the name---the
+analogy with Ramsey theory, where a structure is forced to appear once the
+system is large enough---immediately after it.
+
+\subsection*{3. Summary of the later sections}
+
+\begin{point}
+Some later sections are mentioned at the end of the Introduction, but it is
+advisable to describe and briefly summarize all the later sections at the end
+of the Introduction.
+\end{point}
+
+\reply The introduction now ends with a paragraph summarising every section in
+turn, from Sec.~2 through the Conclusions and the Appendix, one clause each.
+
+\subsection*{4A, 4B. The aim of each section}
+
+\begin{point}
+Similar statements can be repeated for Section 2 and 3: the narration is
+missing from the text. What is the aim of Section 2? This must be briefly and
+clearly mentioned at the beginning of Section 2 \& 3. All the sections must be
+briefly modified in this sense.
+\end{point}
+
+\reply Every section now opens with a sentence stating its aim. For example,
+Sec.~2: ``The aim of this section is to define the lattice, to define the
+bipartition whose detectability the rest of the paper analyses, and to give in
+closed form the handful of counts on which both models depend.'' Sec.~3: ``This
+section establishes the structural fact on which everything else rests: growth
+acts on the block statistics as an exact linear map, and the two eigenvalues of
+that map separate bulk growth from the growth of the community boundary.'' The
+same has been done for Secs.~4--12 and for the subsections of Secs.~6 and~11.
+
+\subsection*{5. The $\lambda$ parameters in Eq.~(5)}
+
+\begin{point}
+In section 2, it is unclear what are those lambda parameters on the RHS in
+Eq.~(5).
+\end{point}
+
+\reply This was poor presentation: the matrix and its eigenvalues were placed
+side by side in one display without saying that the latter were the eigenvalues
+of the former. They are now separated. Equation~(6) of the revision gives $M$
+alone; the eigenvalues follow in Eq.~(7) after the sentence ``Because $M$ is
+triangular, its eigenvalues can be read off the diagonal'', with the explicit
+statement that ``they are eigenvalues of $M$ in the ordinary sense: any
+component of $\bm v$ along the corresponding eigenvector is multiplied by that
+factor at every generation'', followed by what each one physically controls
+($\lambda_{\rm vol}$ the edge count and degree sums, $\lambda_{\rm seam}$ the
+community boundary).
+
+\subsection*{6. Numerical evidence that the last column of Table~2 tends to $\ln 2$}
+
+\begin{point}
+In Table 2, there is no numerical evidence presented that the last column
+really gives the value ln2 in the large t limit.
+\end{point}
+
+\reply Agreed---the original table stopped at $t=10$, where the density is
+$0.685$, which is not evidence for $0.693$. The revision devotes a separate
+table (Table~3) to the convergence, carried to $t=20$ ($m=1.1\times10^{12}$
+edges), and reports not only the density but the deficit
+$\delta_t^{\rm exact}=1-\logR_{\rm dc}/(m\ln2)$ against the analytic prediction
+$\delta_t$ derived in Sec.~7.4:
+
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+$t$ & $\logR_{\rm dc}/m$ & $\delta_t^{\rm exact}$ & $\delta_t$ (predicted) & ratio\\
+\midrule
+$10$ & $0.685387$ & $0.011196$ & $0.011175$ & $1.0019$\\
+$14$ & $0.692494$ & $0.000943$ & $0.000943$ & $1.0001$\\
+$20$ & $0.693133$ & $0.000020$ & $0.000020$ & $1.0000$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+against $\ln2=0.693147$. So the limit is not merely approached numerically; the
+rate of approach is predicted analytically by the seam mode of the RG map and
+confirmed to four significant figures. All entries are computed in $80$-digit
+arithmetic from the closed forms.
+
+\subsection*{7. The ``detection problem''}
+
+\begin{point}
+Below Fig.~3, a detection problem is mentioned, but it is not fully clear what
+is meant by this term.
+\end{point}
+
+\reply The term is now defined at that point: ``By the \emph{detection problem}
+we mean, throughout, the comparison of the two models of Eqs.~(1)--(2) on this
+family of lattices, regarded as a statistical-mechanics problem in its own
+right: $\logR$ plays the role of a free energy, the statistics $\bm v$ the role
+of couplings, and $M$ the role of the RG recursion. In that dictionary Eq.~(15)
+is its fixed-point free-energy density.'' The same dictionary is then restated
+compactly in Sec.~8.
+
+\subsection*{8. Continuous versus jump in Fig.~6 (left)}
+
+\begin{point}
+On the LHS of Fig.~6, it is not evidenced that for q=2 the data show a
+continuous transition and for larger q the data show a jump. The sharpening
+mentioned in the label of the figure is not visible.
+\end{point}
+
+\reply The reviewer is right, and pursuing this showed the claim itself to be
+wrong. I computed two exact diagnostics.
+
+\emph{(i) Width.} The $10$--$90\%$ width of the step, in units of the critical
+coupling, shrinks geometrically with generation at a rate that coincides with
+the thermal eigenvalue $\lambda_T=f'(r_\star)$ of the exact Potts recursion:
+
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+$K$ & $2$ & $4$ & $8$ & $16$\\
+\midrule
+measured width ratio per generation & $1.677$ & $1.852$ & $2.045$ & $2.250$\\
+$\lambda_T$ from the fixed point     & $1.679$ & $1.853$ & $2.045$ & $2.250$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This is ordinary finite-size scaling at a \emph{continuous} transition,
+$\Delta K/K_c\sim L^{-1/\nu}$, and it happens at $K=2$---which is known to be
+continuous---exactly as at $K=16$. A step therefore forms for every $K$, and
+its formation is not evidence of a first-order transition.
+
+\emph{(ii) Latent heat.} I computed the energy density (the fraction of
+same-colour bonds) by propagating derivatives analytically through the
+recursion, at $t=18$, and measured $\epsilon(K_c^+)-\epsilon(K_c^-)$ over
+windows $\pm\delta$ with $\delta$ shrinking. It tends to zero for every $K$
+($0.010,0.001,0.0001$ at $K=2$; $0.118,0.026,0.005$ at $K=16$, for
+$\delta=10^{-2},10^{-3},10^{-4}$): there is no latent heat at any $K$.
+
+Section~11 has therefore been rewritten. The transition is continuous for every
+$K$ on this lattice, with a $K$-dependent thermal eigenvalue and exponent
+$\nu(K)$ falling from $1.338$ at $K=2$ towards $1/2$; the step is a finite-size
+crossover. Figure~6 has been rebuilt to show exactly this: panel (a) the
+steepening with size at fixed $K$, panel (b) the width against generation for
+$K=2,4,8,16$ with the $\lambda_T^{-t}$ prediction drawn through the points,
+panel (c) the ordering temperature. The new Table~6 gives $r_\star$,
+$\lambda_T$, $\nu$ and $T_c$ across nine decades of $K$. The physical
+conclusion of the section---that each level of the hierarchy is thermally rigid
+below its own $T_c$ and that $T_c$ falls as the hierarchy deepens---is
+unchanged and now better supported.
+
+\subsection*{9. The slope of the fit in Fig.~5 (right)}
+
+\begin{point}
+On the RHS of Fig.~5, what is the slope of the fit on the red color data, and
+what conclusion can be made from the result of the fitting?
+\end{point}
+
+\reply This question exposed an error. The measured slope is $0.250$, not the
+$0.5$ implied by the $\sqrt{n}$ guide line drawn in the original figure. The
+correct result is
+\[
+  K_{\rm opt}=2^{d_\star}=\sqrt{\gamma}\,2^{t/2}=\sqrt{\gamma\,b^{t}}
+  =\sqrt{\gamma}\,m^{1/4}\simeq\sqrt{\gamma}\,(3n/2)^{1/4},
+\]
+i.e.\ $K_{\rm opt}\sim n^{1/4}$, with blocks of $\sim n^{3/4}$ nodes. The
+original wrote $2^{t/2}\sim\sqrt{n}$, which conflates $b^t=\sqrt{m}$ with $n$;
+on this lattice $n\simeq\tfrac23 m$, so $2^{t/2}=m^{1/4}$, a quarter power of
+the size and not a square root. Section~10 has been corrected accordingly, and
+Fig.~5(b) now draws $m^{1/4}=(3n/2)^{1/4}$ as the prediction, keeps $\sqrt{n}$
+as a dotted contrast curve so the difference is visible, and prints the fitted
+slope ($0.250$ over the five largest sizes) on the panel.
+
+Two remarks on what conclusion follows. First, the optimisation result that
+does \emph{not} depend on the lattice is the depth: $d_\star=\tfrac12(t+\log_2
+\gamma)$, the optimal cut is at half the depth of the hierarchy. The exponent
+relating $K_{\rm opt}$ to $n$ follows from that plus the lattice's own relation
+between $b^t$ and $n$, and is therefore construction-specific; the revision now
+says so explicitly rather than claiming a general $\sqrt{n}$ law. Second, the
+qualitative conclusion is untouched: the optimal number of communities grows
+without bound with the network, so the number of Potts states that best
+describes the network is not a constant of the model.
+
+\subsection*{10A. The two interpretations of $\rk$ in the Conclusion}
+
+\begin{point}
+At the beginning of the Conclusion the author mentions two interpretations of
+the Ramsey community number and the fitted slope version is ruled out but in
+the text earlier it is not shown or evidenced that this version is indeed
+wrong.
+\end{point}
+
+\reply Correct: the claim was made only in the Conclusions. The revision adds
+Sec.~6.3, ``Two readings of $\rk$'', which states both readings and quantifies
+the difference, and Sec.~6.2, which delimits the validity of the asymptotic
+formula with a dedicated table (Table~5) comparing the estimated and exact
+crossing generation across the $(b,s)$ family and over six thresholds. The
+substance is:
+
+\begin{itemize}
+\item the slope reading is asymptotically correct, and in fact this paper
+      removes the fit from it: Eq.~(15) \emph{derives} the slope, $\sigma=\ln
+      K$ per edge, with no free parameters;
+\item but as a way of \emph{locating} $\rk$ it fails in exactly the regime used
+      in practice. At $q=0.99$ it places the crossing of the diamond at
+      $t_\star=2$ ($n=12$) where the exact rule gives $t_\star=3$ ($n=44$); for
+      $(b,s)=(3,2)$ it is wrong by two generations. It becomes reliable only
+      for $L=\ln[q/(1-q)]\gtrsim10^5$, i.e.\ certainties $1-q\lesssim
+      e^{-10^5}$;
+\item the reason is quantitative and now tabulated: at the generations where a
+      practical threshold is crossed, the evidence density is short of $\ln K$
+      by $63\%$ ($t=3$) and $37\%$ ($t=4$), so an asymptotic slope
+      overestimates the accumulated evidence and underestimates $\rk$.
+\end{itemize}
+
+The Conclusions now refer to this evidence instead of asserting it, and are
+worded as a statement about where the two readings part company rather than
+about one being simply wrong.
+
+\subsection*{10B. The last sentence of the Conclusions}
+
+\begin{point}
+On the one hand, the last sentence has a bit ugly starting. On the other hand,
+the problem mentioned by the author is not a simply one question but most
+likely a circle of phenomena as different versions of the disordered networks
+exist. Therefore, it is advisable to improve also this sentence.
+\end{point}
+
+\reply Agreed on both counts. The sentence beginning ``And whether $M$
+survives\ldots'' is gone. In its place the Conclusions now close with a
+paragraph that treats disorder as the family of questions it is, distinguishing
+three cases and saying what is expected of each: (i) bond disorder on an exact
+hierarchical lattice, where the recursion survives but acts on distributions
+rather than numbers, so that the seam eigenvalue becomes a typical rate---the
+Migdal--Kadanoff scheme handles this and it is the natural first step; (ii)
+structural disorder in the growth rule, where $b$ and $s$ are themselves random
+and the eigenvalues become growth rates of a multiplicative process, raising
+the question of whether the evidence density still self-averages to $\ln K$;
+and (iii) genuinely random graphs with planted communities, where no exact
+decimation exists and detectability is itself a sharp phase transition, so the
+question is whether the crossing picture survives on average with $\ln K$
+replaced by an annealed or quenched density. I state which of these I regard as
+tractable extensions of the present method and which is the substantive open
+problem.
+
+\section*{Reviewer \#2}
+
+\begin{point}
+The manuscript contains an original and technically interesting exactly
+solvable treatment of community detectability on hierarchical networks. The
+principal combinatorial and Bayesian results appear valuable. I like the paper
+and think it is very interesting.
+\end{point}
+
+\reply Thank you. The three concerns are addressed below; the third in
+particular led to a substantive correction.
+
+\subsection*{1. Exact crossing versus asymptotic estimate; finite-size validity; $q=0.5$}
+
+\begin{point}
+Please distinguish consistently between the exact crossing definition in
+Eq.~(12) and the asymptotic estimate in Eqs.~(13)-(14). The latter follows from
+an asymptotic evidence density and should not be presented as an unqualified
+exact closed-form formula. Its finite-size validity and the special case q=0.5
+should be clarified.
+\end{point}
+
+\reply Agreed, and the distinction now structures Sec.~6, which is split into
+``The exact crossing'' (6.1), ``The asymptotic estimate and when it is exact''
+(6.2), and ``Two readings of $\rk$'' (6.3).
+
+\emph{Status of each equation.} Equation~(16) (the former Eq.~12) is the
+definition and is exact: $\logR_{\rm dc}$ is known in closed form at every $t$,
+so $t_\star$ is obtained by evaluating a known function on the integers, with
+no asymptotics. Equation~(17) (the former Eq.~13) is now explicitly labelled an
+\emph{estimate}: ``it uses the fixed-point density in place of the exact
+evidence and therefore ignores the deficit $\delta_t$ and the $O(\ln m)$ Occam
+terms''. Equation~(18) (the former Eq.~14, the closed form $\rk(b,s;q)$) is
+stated as ``the asymptotic closed form \ldots subject to the validity
+conditions of Sec.~6.2''.
+
+\emph{Finite-size validity.} This is now quantified rather than asserted. The
+new Table~5 compares the estimate with the exact crossing across six lattices
+and six thresholds. The estimate is exact for every lattice tested once
+$L\gtrsim10^5$; at the practical certainties $q=0.99$ and $q=0.999$ it misses
+for most of them, by one generation and---when the crossing occurs in the first
+few generations---by two. The largest threshold at which a miss is found is
+$5.6\times10^2$ for $(2,2)$ and $4.2\times10^4$ for $(4,2)$. I have also
+corrected the statement in Sec.~7.5: the original said the estimate ``exceeds
+by exactly one generation otherwise'', which is true only in the asymptotic
+regime; the text now says one generation asymptotically and up to two for early
+crossings, consistent with Table~5.
+
+\emph{The case $q=1/2$.} This is now treated explicitly as case (ii) of
+Sec.~6.2. At $q=1/2$ the threshold is $L=0$, the argument of the logarithm in
+Eq.~(17) vanishes and the estimate is undefined ($t_\star\to-\infty$). This is
+not a removable singularity: at $q=1/2$ the crossing is decided not by the
+extensive $\ln K$ term at all but by the sign change of the $O(\ln m)$ Occam
+remainder during the transient---the moment at which the split first repays its
+own complexity. The exact rule handles it without modification and gives
+$t_\star=2$ for every member of the family examined ($\logR_{\rm dc}=-0.25$ at
+$t=1$ and $+0.03$ at $t=2$ for the diamond), hence
+$\rk=12,23,38,30,56,62$ for $(b,s)=(2,2),(3,2),(4,2),(2,3),(2,4),(3,3)$. The
+text now states that Eq.~(17) should be used only for $q>1/2$, and
+quantitatively only for $L\gg\ln K$.
+
+\subsection*{2. Details of the finite-temperature recursion; how the RB term enters}
+
+\begin{point}
+Please provide sufficient details of the finite-temperature recursion for
+reproducibility. Explain how the degree-weighted Reichardt-Bornholdt term is
+incorporated into the recursion and how it leads to the different-community hub
+order, since Eq.~(24) by itself describes the local ferromagnetic Potts
+recursion.
+\end{point}
+
+\reply This was the sharpest question in the reports, because the honest answer
+is that Eq.~(24) does \emph{not} contain the degree-weighted term, and the
+original manuscript did not say so. The revision separates the two cases
+cleanly and adds a full appendix.
+
+\emph{(a) $K=2$: the penalty is included exactly.} The penalty is infinite
+range but depends on the configuration only through the integer
+$M_\kappa=\sum_i\kappa_i\sigma_i$. The ferromagnetic partition function is
+therefore computed \emph{resolved by} the value of $M_\kappa$, and the penalty
+applied afterwards, $Z=\sum_M G(M)\exp[-\tfrac{\beta\gamma}{4m}(M^2-\sum_i
+\kappa_i^2)]$. $G(M)$ comes from the same decimation with the bond weight
+promoted from a number to a polynomial in a formal variable tracking
+$M_\kappa$: the two-terminal weight of a height-$h$ sub-diamond is a
+$2\times2$ array whose entries are dictionaries $\{M\mapsto\text{weight}\}$,
+series composition convolves them while the internal spin (whose final degree
+$2^h$ is fixed at birth) contributes $z^{\pm2^h}$, parallel composition
+convolves the two bundles, and the poles of degree $2^t$ are attached last and
+kept resolved so that $\langle\sigma_A\sigma_B\rangle$ is read off directly.
+Nothing is approximated. This is now Appendix~A.2, together with the validation
+(brute-force enumeration over all $2^n$ configurations at $t\le3$, and
+cross-validation between two independent implementations at $t=4$).
+
+\emph{(b) Why the hubs end up in different communities.} The original stated
+this as a numerical output and, worse, identified the ordered state with the
+bundle cut of Sec.~2---which is not correct, since the bundle cut puts both
+hubs in one block. The revision derives it. Two bipartitions sever exactly the
+same $c_t=2^t$ seam edges: the bundle cut, block~1 $=$ bundle~0 $\cup\{A,B\}$,
+with degree imbalance $M_\kappa=2^{t+1}$; and the \emph{staggered} cut,
+block~1 $=$ bundle~0 $\cup\{A\}$, block~2 $=$ bundle~1 $\cup\{B\}$, which is
+exactly degree balanced, $M_\kappa=0$, because each block then carries
+$\kappa=m$. Their ferromagnetic energies are identical, so
+\[
+  \mathcal{H}_{\rm bundle}-\mathcal{H}_{\rm stag}
+   =\frac{\gamma}{4m}\big(2^{\,t+1}\big)^2=\gamma
+\]
+exactly, independent of size. Hence any $\gamma>0$ selects the staggered cut
+and the hubs sit in opposite communities---which is precisely what the exact
+solution shows. Brute-force minimisation over all $2^{n-1}$ bipartitions at
+$t=2$ confirms the staggered cut is the global ground state ($E=-9.5$ at
+$\gamma=1$, against $-8.5$ for the bundle cut and $-1.5$ for a single
+community), and the identity is verified by direct construction through $t=7$.
+This is the new Sec.~9.1 with Eq.~(26); Fig.~2 now shows both cuts side by
+side. I also note there that the preference is $O(1)$ rather than extensive, so
+the detection analysis---insensitive to the reassignment of two vertices---
+applies to either cut.
+
+\emph{(c) $K>2$: what Eq.~(24) does and does not contain.} Section~11 now opens
+with an explicit statement. At $K=2$, where both parts are treated exactly, the
+ordering temperature coincides with the ferromagnetic $T_c^{\rm FM}$ for every
+$\gamma>0$: the penalty selects \emph{which} colouring orders, the
+ferromagnetic term sets \emph{when} it orders. For the depth-$d$ hierarchy we
+therefore compute the rigidity of the colour field from the ferromagnetic
+$K$-state Potts model, having established in Sec.~10 that the RB energy at
+resolution $\gamma$ selects the depth-$d_\star$ partition as its ground state.
+The text says in as many words: ``Equation~(31) is exactly that local
+ferromagnetic recursion, and it does not contain the penalty; the penalty
+enters the argument only through the ground-state selection of Secs.~9.1
+and~10. We state this explicitly to avoid any suggestion that the
+infinite-range term has been decimated---it has not, and it need not be, since
+it does not move $T_c$.''
+
+\emph{(d) Reproducibility.} Appendix~A now documents all three constructions:
+A.1 the statistics and evidence (construction, $80$-digit arithmetic, why that
+precision is needed, agreement with closed forms to $10^{-6}$); A.2 the $K=2$
+RB solution as above; A.3 the $K$-state Potts hierarchy, including the reduced
+variable $r=B/A$, the single map $r'=f(r)$ it produces, the location of the
+unstable fixed point, and the analytic derivative propagation used for the
+energy density. Each subsection names the script that implements it. I have
+also made the order parameter unambiguous: it is the hub--hub colour rigidity
+$\rho_K=[P(\sigma_A=\sigma_B)-1/K]/(1-1/K)$, defined in Eq.~(33). (In the
+original, the figure plotted the same-colour excess while the text described it
+as the different-colour excess; this is now consistent.)
+
+\subsection*{3. Is the evidence conditional on the partition? Same prior convention?}
+
+\begin{point}
+Please state whether the Bayesian evidence is conditional on the prescribed
+bundle partition or includes a partition prior, and confirm that the plain and
+degree-corrected comparisons use the same prior convention.
+\end{point}
+
+\reply I checked, and I cannot confirm it: they did not. This is the most
+consequential correction in the revision, and I am grateful for the question.
+
+\emph{What the convention is.} Both evidences are conditional on the prescribed
+bundle partition: the block assignment is fixed by the construction of the
+lattice, no prior over partitions is included, and no search over partitions is
+performed. This is now stated explicitly at the head of the new Sec.~4.2, with
+the reason (the partition is not an inference target; the question asked is
+whether \emph{this} partition describes the network better than none).
+
+\emph{What was inconsistent.} The plain-model evidence, following the companion
+papers, additionally carried a node-labelling prior obtained by integrating a
+Beta--Bernoulli membership probability, contributing
+\[
+  \Lambda_t=\ln B(n_1{+}\alpha,n_2{+}\alpha)-\ln B(\alpha,n{+}\alpha)
+           =-n\ln K+O(\ln n)
+\]
+(numerically $\Lambda_t/(-n\ln2)=0.999999$ at $t=12$). The degree-corrected
+evidence did not carry it. Since $\Lambda_t$ is extensive in $n$ while the
+evidence is extensive in $m$, and $n/m\to2/3$ here, this does not merely shift
+the comparison---it rescales its density.
+
+\emph{Consequences, all now in the paper.} Putting both models in both
+conventions (new Table~2, revised Fig.~3(a)) gives:
+
+\begin{itemize}
+\item Conditional on the same partition, the plain and degree-corrected
+      evidences agree to $O(\ln m)$: their difference is $-1.5$, $-11.5$,
+      $-22.5$ at $t=4,8,12$ against evidences of order $10^2$, $10^4$, $10^7$.
+      The reason is structural and now stated in Sec.~2: the bundle cut is
+      balanced in both node number and degree,
+      $\kappa_1/\kappa_2=1+2(1/s)^t\to1$, so degree correction has nothing to
+      remove.
+\item Consequently degree correction does \emph{not} move $\rk$ on this
+      lattice: both models give $\rk=44$ in the conditional convention and
+      $\rk=684$ with the labelling prior (revised Table~4). The claim
+      ``degree correction advances detection by two generations'' has been
+      removed from the abstract, introduction, Sec.~6 and the conclusions, and
+      replaced by the correct statement.
+\item In the labelled convention both densities converge to
+      $(1-n/m)\ln K$, i.e.\ $\ln2/3=0.2310$ here against a measured slope
+      $0.2302$. The ratio of the two densities is therefore $(1-n/m)^{-1}$:
+      exactly $3$ for the diamond ($n/m\to2/3$) and $2$ for a lattice with
+      $n/m\to1/2$ such as the pseudofractal web---which is the factor of two
+      reported there. The original had declared that factor non-universal; it
+      is universal, once one identifies what it is a property of, namely the
+      node-to-edge ratio and the labelling prior, and not degree correction.
+\end{itemize}
+
+\emph{What is unaffected.} None of the renormalization-group results depend on
+the choice: $\Lambda_t$ is a fixed function of $n$ that shifts the threshold
+crossing without touching the map $M$, its eigenvalues, the flow, or the
+fixed-point density. The paper states this and uses the conditional convention
+throughout, reporting the other one alongside wherever a number depends on it
+(Tables~2 and~4, Fig.~3(a)).
+
+\section*{Reviewer \#3}
+
+\begin{point}
+This manuscript presents a theoretically elegant and technically solid
+contribution\ldots I find the work original and valuable\ldots Overall, this is
+a strong and well-executed theoretical paper. I recommend acceptance.
+\end{point}
+
+\reply Thank you for the careful summary of the argument and for the
+recommendation. The three suggestions are all adopted.
+
+\subsection*{1. The notation $q$}
+
+\begin{point}
+The author may wish to clarify the notation q, since it is used both for the
+Bayesian detection threshold and for the number of Potts states in later
+sections.
+\end{point}
+
+\reply Adopted, by resolving the clash rather than explaining it. Throughout
+the revision, $q$ denotes the detection certainty and nothing else, and $K$
+denotes the number of communities everywhere---as the number of blocks in the
+evidence, as the value of the fixed-point density $\ln K$, and as the number of
+Potts states in Secs.~10 and~11. This has the additional benefit of making the
+continuity visible: the $K$ whose logarithm is the fixed-point evidence density
+is literally the $K$ of the $K$-state Potts model that orders at $T_c(K)$. The
+introduction now states the convention explicitly, and $q_{\rm opt}$ has become
+$K_{\rm opt}$, $T_c(q)$ has become $T_c(K)$, and Eq.~(31) carries $(K-1)$ and
+$(K-2)$.
+
+\subsection*{2. A paragraph on scope}
+
+\begin{point}
+It would also be helpful to add a short explanatory paragraph emphasizing that
+the work is not intended as a general-purpose algorithm, but as an exactly
+solvable theoretical model that clarifies the physical meaning of
+detectability.
+\end{point}
+
+\reply Adopted. The introduction now contains, before the roadmap: ``this is a
+study of an exactly solvable model, not a detection algorithm. The partition
+tested is prescribed by the construction of the lattice, and no search over
+partitions is performed or needed; the purpose is to expose, in a setting where
+every quantity is exact, what the detectability of communities means
+physically.'' The same point is reinforced in Sec.~4.2, where the conditional
+prior convention is justified precisely on the grounds that the partition is
+not an inference target.
+
+\subsection*{3. Expanded discussion of disordered and random networks}
+
+\begin{point}
+Finally, the discussion on possible extensions to disordered or random networks
+could be slightly expanded, since this is likely to be of broad interest to the
+community.
+\end{point}
+
+\reply Adopted, and expanded rather more than slightly---this also answers
+Reviewer~1's point 10B. The Conclusions now close with a paragraph
+distinguishing bond disorder (recursion intact, couplings become distributions,
+tractable by Migdal--Kadanoff), structural disorder in the growth rule ($b$ and
+$s$ random, eigenvalues become growth rates of a multiplicative process, with
+self-averaging of the evidence density the question to settle), and random
+graphs with planted communities (no exact decimation, detectability itself a
+sharp transition, the question being whether the crossing picture survives on
+average with $\ln K$ replaced by an annealed or quenched density), with a
+statement of which I regard as tractable and which is the substantive open
+problem.
+
+\section*{List of changes to the manuscript}
+
+\textbf{Presentation.}
+\begin{enumerate}
+\item Abstract rewritten in plain narrative form; every symbol defined at first
+      use.
+\item Introduction rewritten: separate paragraphs for the question, the two
+      models and the evidence ratio, the definition of $\rk$, the results, the
+      scope of the work, and a roadmap of all sections.
+\item An opening paragraph stating the aim added to every section and to the
+      subsections of Secs.~6 and~11.
+\item Notation unified: $q$ is the detection certainty only; $K$ is the number
+      of communities and of Potts states throughout.
+\item Matrix $M$ [Eq.~(6)] and its eigenvalues [Eq.~(7)] separated, with the
+      meaning of the eigenvalues stated.
+\item ``The split'' and ``the detection problem'' defined at first use.
+\end{enumerate}
+
+\textbf{Corrections.}
+\begin{enumerate}\setcounter{enumi}{6}
+\item Prior conventions made consistent (new Sec.~4.2, new Table~2, revised
+      Table~4, revised Fig.~3(a)): plain and degree-corrected evidences agree
+      to $O(\ln m)$ and give the same $\rk$; the previously reported gap is the
+      node-labelling prior $\Lambda_t\to-n\ln K$ [Eq.~(11)]. The claim that
+      degree correction advances detection by two generations is removed.
+\item Density ratio between conventions identified as $(1-n/m)^{-1}$
+      [Eq.~(12)], explaining both the diamond's $3$ and the pseudofractal's
+      $2$; the ``not universal'' claim is removed.
+\item $K_{\rm opt}$ corrected from $\sqrt{n}$ to $\sqrt{\gamma}\,m^{1/4}\sim
+      n^{1/4}$ [Eq.~(30)]; Fig.~5(b) redrawn with the correct guide, a contrast
+      curve, and the fitted slope $0.250$ shown. The invariant statement
+      $d_\star=t/2$ is retained and emphasised.
+\item Order of the finite-temperature transition corrected: continuous for
+      every $K$, with the step a finite-size crossover of width
+      $\lambda_T^{-t}$ and no latent heat (rewritten Sec.~11, new Table~6,
+      rebuilt Fig.~6).
+\item The asymptote $k_BT_c/J\to3/(2\ln K)$ derived exactly [Eq.~(34)],
+      replacing the fitted $c\approx0.70$.
+\item Ordered partition identified as the staggered cut, not the bundle cut,
+      with $\mathcal{H}_{\rm bundle}-\mathcal{H}_{\rm stag}=\gamma$ exactly
+      (new Sec.~9.1, Eq.~(26), new Fig.~2(b)).
+\item Order parameter of Sec.~11 made consistent between text and figure
+      [$\rho_K$, Eq.~(33)].
+\item Validity of the asymptotic crossing formula corrected: one generation
+      asymptotically, up to two for early crossings (Sec.~7.5, Table~5).
+\end{enumerate}
+
+\textbf{New material.}
+\begin{enumerate}\setcounter{enumi}{14}
+\item Section~4.2 on prior conventions, with Table~2.
+\item Table~3: convergence of the evidence density to $\ln K$ through $t=20$,
+      against the analytic deficit.
+\item Section~6.2 on the validity of the asymptotic estimate, including the
+      $q=1/2$ case, with Table~5.
+\item Section~6.3 on the two readings of $\rk$.
+\item Section~9.1 on which partition is the ground state.
+\item Table~6: the Potts critical fixed point across nine decades of $K$.
+\item Appendix~A: computational methods for all three constructions.
+\item Expanded closing discussion of disorder in the Conclusions.
+\end{enumerate}
+
+\textbf{Figures.} Fig.~2 now has two panels (bundle and staggered cuts);
+Fig.~3(a) shows both models in both prior conventions; Fig.~5(b) is redrawn as
+described; Fig.~6 is rebuilt with three panels. Figs.~1 and~4 are unchanged.
+
+\textbf{Reproducibility.} Two new scripts accompany the revision:
+\texttt{rb\_groundstate.py} (ground-state identification and the exact energy
+gap $\gamma$) and \texttt{potts\_fixedpoint.py} (Potts fixed point, thermal
+eigenvalue, transition width, energy density). \texttt{diamond\_rg.py} gains
+the labelling-prior and conditional-plain evidence functions. Every table and
+figure in the paper is regenerated by these scripts.
+
+\end{document}

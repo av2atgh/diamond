@@ -99,6 +99,21 @@ def logR_plain(G, part, alpha):
     return float((num - den).real)
 
 
+def label_prior(G, part, alpha):
+    """Node-labelling prior factor carried by the companion papers' plain-model
+    convention:  ln B(n_1+a, n_2+a) - ln B(a, N+a).  It is the log prior odds of
+    the prescribed labelling against the all-in-one-block labelling under a
+    Beta-Bernoulli membership prior, and is asymptotically -N ln K."""
+    a = mpf(alpha); K, n, e, kap = _stats(G, part); N = sum(n); assert K == 2
+    return float((_logB(n[0] + a, n[1] + a) - _logB(a, N + a)).real)
+
+def logR_plain_cond(G, part, alpha):
+    """Plain Bernoulli-SBM evidence ratio CONDITIONAL on the prescribed partition,
+    i.e. with the node-labelling prior removed -- the convention used for the
+    degree-corrected evidence, and hence the like-for-like comparison."""
+    return logR_plain(G, part, alpha) - label_prior(G, part, alpha)
+
+
 # ------------------------------------------------ closed-form evidence (any t)
 def logR_dc_cf(t, alpha):
     a = mpf(alpha); _, _, E11, E22, E12, k1, k2 = closed(t); m = 4 ** t; twom = 2 * m
@@ -114,6 +129,18 @@ def logR_plain_cf(t, alpha):
            + _logB(E12 + a, m12 - E12 + a) + _logB(n1 + a, n2 + a))
     den = 2 * _logB(a, a) + _logB(E + a, Mtot - E + a) + _logB(a, N + a)
     return float((num - den).real)
+
+def label_prior_cf(t, alpha):
+    a = mpf(alpha); n1, n2 = closed(t)[0], closed(t)[1]; N = n1 + n2
+    return float((_logB(n1 + a, n2 + a) - _logB(a, N + a)).real)
+
+def logR_plain_cond_cf(t, alpha):
+    """Plain evidence, conditional convention (labelling prior removed)."""
+    return logR_plain_cf(t, alpha) - label_prior_cf(t, alpha)
+
+def logR_dc_lab_cf(t, alpha):
+    """Degree-corrected evidence carrying the same labelling prior as logR_plain_cf."""
+    return logR_dc_cf(t, alpha) + label_prior_cf(t, alpha)
 
 def Psplit(lr): return float(1 / (1 + exp(-mpf(lr))))
 def Nof(t): return (2 * 4 ** t + 4) // 3
@@ -139,22 +166,44 @@ if __name__ == "__main__":
         assert np.all(M @ np.array(closed(t)[2:]) == np.array(closed(t + 1)[2:]))
     print("   OK. eigenvalues =", sorted(set(int(round(z.real)) for z in np.linalg.eigvals(M))), "\n")
 
-    print("== Table II data: evidence and density (alpha=1) ==")
-    print("   t     N        logR_dc     logR_plain    logR_dc/m")
-    for t in range(1, 11):
-        print(f"   {t:<3}{Nof(t):>8}{logR_dc_cf(t,1.):>13.2f}{logR_plain_cf(t,1.):>13.2f}{logR_dc_cf(t,1.)/4**t:>12.5f}")
+    print("== closed-form vs direct labelling prior / conditional plain (t<=7) ==")
+    for t in range(1, 8):
+        G, poles, part = diamond(t)
+        assert abs(label_prior(G, part, 1.0) - label_prior_cf(t, 1.0)) < 1e-6
+        assert abs(logR_plain_cond(G, part, 1.0) - logR_plain_cond_cf(t, 1.0)) < 1e-6
+    print("   OK\n")
+
+    print("== Table II data: evidence, both prior conventions (alpha=1) ==")
+    print("   t     N     logR_dc  logR_pl|cond   Lambda_t   logR_dc+L   logR_pl"
+          "    logR_dc/m   1-dens/ln2   delta_t(pred)")
+    for t in range(1, 13):
+        m = 4 ** t; dc = logR_dc_cf(t, 1.); pc = logR_plain_cond_cf(t, 1.)
+        lab = label_prior_cf(t, 1.); dens = dc / m
+        dex = 1 - dens / math.log(2)
+        dpred = (2 * (2 - 1) / (2 * math.log(2))) * (t * math.log(2) + 1) / 2 ** t
+        print(f"   {t:<3}{Nof(t):>8}{dc:>12.2f}{pc:>12.2f}{lab:>12.2f}"
+              f"{dc+lab:>12.2f}{logR_plain_cf(t,1.):>12.2f}{dens:>11.5f}"
+              f"{dex:>12.6f}{dpred:>13.6f}")
     print(f"\n   fixed-point density  logR_dc/m -> ln K = ln 2 = {math.log(2):.5f}")
-    sp = (logR_plain_cf(13, 1.) - logR_plain_cf(12, 1.)) / (4 ** 13 - 4 ** 12)
-    print(f"   plain slope ~ {sp:.5f}   (DC/plain ~ {math.log(2)/sp:.2f})\n")
+    print(f"   Lambda_t / (-N ln 2) at t=12: {label_prior_cf(12,1.)/(-Nof(12)*math.log(2)):.6f}")
+    print("   plain(conditional) - dc  (should be O(ln m)):",
+          ", ".join(f"t={t}: {logR_plain_cond_cf(t,1.)-logR_dc_cf(t,1.):.1f}" for t in (4, 8, 12)))
+    sl = (logR_dc_lab_cf(13, 1.) - logR_dc_lab_cf(12, 1.)) / (4 ** 13 - 4 ** 12)
+    print(f"   labelled-convention slope ~ {sl:.5f}  =  ln2 (1 - n/m) = {math.log(2)/3:.5f}\n")
 
     print("== RG flow of densities -> (u_in, u_cross) = (K, 0) = (2, 0) ==")
     for t in range(1, 9):
         u11, u22, u12 = densities(t)
         print(f"   t={t}:  u_in={u22:.5f}  u_cross={u12:.5f}")
 
-    print("\n== Table III: r_kappa = N_{t*}  (alpha=1) ==")
+    print("\n== Table III: r_kappa = N_{t*} in both prior conventions (alpha=1) ==")
+    print("        q     | conditional: DC     plain    | labelled: DC      plain")
     for q in (0.5, 0.9, 0.99, 0.999):
         thr = math.log(q / (1 - q))
-        td = next(t for t in range(1, 40) if logR_dc_cf(t, 1.) >= thr)
-        tp = next(t for t in range(1, 40) if logR_plain_cf(t, 1.) >= thr)
-        print(f"   q={q:<6}  DC: r_kappa=N_{td}={Nof(td):<6}   plain: r_kappa=N_{tp}={Nof(tp)}")
+        f = lambda g: next(t for t in range(1, 40) if g(t, 1.) >= thr)
+        td, tp = f(logR_dc_cf), f(logR_plain_cond_cf)
+        tdl, tpl = f(logR_dc_lab_cf), f(logR_plain_cf)
+        print(f"   q={q:<6} |  N_{td}={Nof(td):<6}  N_{tp}={Nof(tp):<6} |"
+              f"  N_{tdl}={Nof(tdl):<7} N_{tpl}={Nof(tpl)}")
+    print("\n   Within a convention, degree correction does not move r_kappa on this")
+    print("   lattice: the bundle cut is balanced in node number and in degree.")

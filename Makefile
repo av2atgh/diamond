@@ -14,7 +14,7 @@ all: pdf
 #   Fig. 2  fig_lattice.pdf       Fig. 3  fig_data.pdf   (make_figures.py)
 #   Fig. 4  fig_rb.pdf        (make_rb_figure.py    -> rb_fast.py, rb_exact_gf.py)
 #   Fig. 5  fig_hier.pdf      (make_hier_figure.py  -> rb_potts_hier.py)
-#   Fig. 6  fig_potts.pdf     (make_potts_figure.py -> rb_potts_decimation.py)
+#   Fig. 6  fig_potts.pdf     (make_potts_figure.py -> potts_fixedpoint.py)
 figures: fig_construction.pdf fig_lattice.pdf fig_data.pdf fig_rb.pdf fig_hier.pdf fig_potts.pdf
 
 fig_construction.pdf: make_construction_figure.py diamond_rg.py
@@ -31,7 +31,7 @@ fig_rb.pdf: make_rb_figure.py rb_fast.py rb_exact_gf.py
 fig_hier.pdf: make_hier_figure.py rb_potts_hier.py
 	python3 make_hier_figure.py
 
-fig_potts.pdf: make_potts_figure.py rb_potts_decimation.py
+fig_potts.pdf: make_potts_figure.py potts_fixedpoint.py
 	python3 make_potts_figure.py
 
 # ----------------------------------------------------------------- manuscript
@@ -49,11 +49,15 @@ manuscript.pdf: manuscript.tex refs.bib figures
 #   general_bs.py  the general-(b,s) bundle lemma, RG map, density ln b
 #   check_rk_bs.py the r_kappa(b,s;q) crossing formula
 #   probe_bs.py    seam eigenvalue = b across the (b,s) family
+#   rb_groundstate.py    the staggered cut is the RB ground state (Table VI)
+#   potts_fixedpoint.py  Potts critical fixed point, lambda_T, T_c(K) (Table VII)
 verify:
 	python3 diamond_rg.py
 	python3 general_bs.py
 	python3 check_rk_bs.py
 	python3 probe_bs.py
+	python3 rb_groundstate.py
+	python3 potts_fixedpoint.py
 
 # ----------------------------------------------------------------- clean
 clean:
