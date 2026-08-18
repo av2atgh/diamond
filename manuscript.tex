@@ -24,11 +24,13 @@
 \affiliation{organization={Nodes \& Links Ltd}, city={Cambridge}, country={United Kingdom}}
 
 \begin{abstract}
-A network must be large enough before communities emerge. The smallest size at which the split wins is the Ramsey community number
-$\rk$. For a family of networks grown by a fixed
+A network must be large enough before communities emerge. The smallest size at
+which a split into communities is the better description is the Ramsey community
+number $\rk$. For a family of networks grown by a fixed
 rule, $\rk$ has been obtained numerically. Here we report an exact calculation for the diamond hierarchical
 lattice, based on real-space renormalization. One generation of growth replaces every edge by $b$ parallel paths of
-$s$ edges, and acts on the statistics the two models depend on as an exact
+$s$ edges, and acts on the edge and degree counts the comparison depends on
+as an exact
 linear map with two eigenvalues: a volume eigenvalue $bs$ multiplying the bulk,
 and a smaller seam eigenvalue $b$ multiplying the boundary between communities,
 which therefore thins at every step. Carried by that flow, the evidence per edge
@@ -62,8 +64,8 @@ How large must a network grow before its community structure becomes an
 objective fact? Communities---groups of nodes more densely wired among
 themselves than to the rest of the network---are the most studied form of
 mesoscopic organization in networks~\cite{fortunato2010,fortunato2016}. The
-difficulty is that any sufficiently flexible algorithm will happily carve
-communities out of a structureless graph, so the existence of a partition
+difficulty is that any sufficiently flexible algorithm will carve communities
+out of a structureless graph, so the existence of a partition
 returned by an algorithm is no evidence that the network has one.
 
 The standard remedy is Bayesian model comparison~\cite{holland1983,karrer2011,
@@ -104,11 +106,10 @@ number}~\cite{d7kf-s1cf} is the smallest size at which it succeeds,
 in the spirit of Ramsey theory, where a structure is forced to appear once a
 system is large enough. A plain ring never breaks ($\rk=\infty$), while a ring
 with second-neighbor bonds breaks at
-$\rk\approx35$~\cite{vazquez2026ringwantsbroken}; on the scale-free
-pseudofractal web of Dorogovtsev, Goltsev and Mendes~\cite{dgm2002} the reported
-value drops from $1095$ to $42$ when the comparison is made against a
-degree-corrected null~\cite{karrer2011,
-vazquez2026communitystructurepseudofractalweb}. In every case reported so far,
+$\rk\approx35$~\cite{vazquez2026ringwantsbroken}; and on the scale-free
+pseudofractal web of Dorogovtsev, Goltsev and Mendes~\cite{dgm2002} the values
+$1095$ and $42$ are reported for the plain and the degree-corrected
+comparison~\cite{karrer2011,vazquez2026communitystructurepseudofractalweb}. In every case reported so far,
 however, $\rk$ and the asymptotic growth rate $\logR\sim\sigma n$ of the
 evidence were obtained numerically: the evidences are closed-form, but the
 crossing and the slope are read off a curve.
@@ -116,7 +117,7 @@ crossing and the slope are read off a curve.
 In this work we show that on hierarchical lattices $\rk$ need not be read off a
 curve at all: it is an exact renormalization-group (RG) statement. We work on
 the diamond hierarchical lattice of Migdal and
-Kadanoff~\cite{migdal1976,kadanoff1976}, the classic arena in which real-space
+Kadanoff~\cite{migdal1976,kadanoff1976}, the standard setting in which real-space
 decimation is exact and spin models are solved by iterating a
 recursion~\cite{berker1979,kaufman1981,griffiths1982}. Three results follow.
 First, the quantities the two models depend on---the numbers of edges within
@@ -199,7 +200,7 @@ After $t$ generations the lattice has
 A vertex born at generation $k$ has degree $2\cdot2^{\,t-k}$, and the poles are
 permanent hubs of degree $b^t=2^t$: the lattice is strongly degree
 heterogeneous, which is what makes the plain versus degree-corrected comparison
-of Sec.~\ref{sec:evidence} worth making.
+of Sec.~\ref{sec:evidence} nontrivial.
 
 \begin{figure*}[tb]
   \centering
@@ -234,8 +235,8 @@ and edge inherit the label of the edge it replaces. The bipartition we test is
 block~$1=$ bundle~$0\cup\{A,B\}$, block~$2=$ bundle~$1$
 [Fig.~\ref{fig:lattice}(a)], the analogue of the recursive branch cut of the
 pseudofractal web~\cite{vazquez2026communitystructurepseudofractalweb}. Because
-the bundles meet only at the poles, block~1 is internally complete and every
-cross edge is an edge of bundle~1 incident on a pole. Elementary counting then
+the bundles meet only at the poles, every edge of bundle~0 lies inside block~1,
+and every edge crossing the cut is an edge of bundle~1 incident on a pole. Elementary counting then
 gives closed forms for the block-pair statistics---$e_{rs}$ edges between
 blocks $r$ and $s$, and block degree sums $\kappa_r$ with
 $\kappa_1+\kappa_2=2m$:
@@ -250,9 +251,9 @@ $\kappa_1+\kappa_2=2m$:
 verified against direct construction through $t=7$ (Table~\ref{tab:counts}).
 The seam is subextensive, $e_{12}=2^t=\sqrt{m}$, so the fraction of edges
 crossing the cut decays geometrically, $e_{12}/m=(1/s)^t\to0$: the two halves
-become ever more cleanly separated as the lattice grows. Note also that the cut
-is nearly balanced in both node number and degree,
-$\kappa_1/\kappa_2=1+2(1/s)^t+O(s^{-2t})\to1$, a fact that will matter in
+become ever more cleanly separated as the lattice grows. The cut is also
+nearly balanced in node number, $n_1/n_2=1+6/(4^t-1)\to1$, and in degree,
+$\kappa_1/\kappa_2=1+2(1/s)^t+O(s^{-2t})\to1$; this matters in
 Sec.~\ref{sec:evidence}.
 
 \begin{table}[tb]
@@ -326,7 +327,7 @@ gap is thus
 \end{equation}
 set by the series length alone. For $s\ge2$ the seam is an irrelevant direction
 relative to the bulk and the crossing fraction flows to zero: the cut is a
-genuine, ever-strengthening community boundary. The degenerate case $s=1$
+community boundary that sharpens as the lattice grows. The degenerate case $s=1$
 (parallel bonds, no interior vertices) has unit gap and never separates---the
 diamond analogue of the plain cycle that never
 breaks~\cite{vazquez2026ringwantsbroken}. Community detectability on these
@@ -444,9 +445,9 @@ all on this lattice (Table~\ref{tab:rk}). This need not hold in general: on a
 lattice whose blocks differ in their degree distributions the two models are
 genuinely different, and a much larger separation between them is reported for
 the pseudofractal web~\cite{vazquez2026communitystructurepseudofractalweb};
-what the present calculation shows is that the separation must be attributed to
-whichever of the two effects---degree correction or the labelling prior---is
-actually responsible, and that on the diamond it is entirely the latter. (ii) On this
+the present calculation shows only that the two effects must be separated
+before either is credited with the difference, and that on the diamond the
+difference is entirely the labelling prior. (ii) On this
 lattice the whole gap between the ``plain'' and the ``degree-corrected'' curve
 is $\Lambda_t$. In the labelled convention both densities converge to
 \begin{equation}
@@ -458,9 +459,8 @@ $t=13$), against $\ln2$ in the conditional convention. The ratio of the two
 densities is therefore $(1-n/m)^{-1}$: exactly $3$ for the diamond, where
 $n/m\to2/3$, and $2$ for a lattice with $n/m\to1/2$ such as the pseudofractal
 web---which is precisely the factor of two reported
-there~\cite{vazquez2026communitystructurepseudofractalweb}. That factor is thus
-a property of the node-to-edge ratio and of the labelling prior, not of degree
-correction, and it is universal in this precise sense. All statements below use
+there~\cite{vazquez2026communitystructurepseudofractalweb}. That factor is thus fixed
+by the node-to-edge ratio and the labelling prior, not by degree correction. All statements below use
 the conditional convention unless stated otherwise, and none of the RG results
 depend on the choice: $\Lambda_t$ is a fixed function of $n$ that shifts the
 threshold crossing without touching the map $M$, its eigenvalues, or the flow.
@@ -473,8 +473,7 @@ threshold crossing without touching the map $M$, its eigenvalues, or the flow.
   prior $\Lambda_t\to-n\ln K$ of Eq.~\eqref{eq:label} to either model reduces
   the density to $(1-n/m)\ln K=\ln2/3$ and delays the crossing by two
   generations. The last two columns are the same two models with that prior
-  included; the fifth column is the degree-corrected evidence with the prior
-  added, and matches the sixth to $O(\ln m)$.}
+  included, and they too agree to $O(\ln m)$.}
   \label{tab:conventions}
   \footnotesize
   \setlength{\tabcolsep}{4pt}
@@ -565,8 +564,9 @@ $\Om_{rr}=m/K^2$; hence $u_{\rm in}=K$ identically, and each edge contributes
 exactly $\ln K$---the entropy of resolving which of $K$ communities it belongs
 to. The value is therefore independent of the lattice, and indeed the symmetric
 three-community cut of the pseudofractal web obeys $e_{rr}/\Om_{rr}\to3$ with
-density $\ln3$~\cite{vazquez2026communitystructurepseudofractalweb}. By the
-\emph{detection problem} we mean, throughout, the comparison of the two models
+density $\ln3$~\cite{vazquez2026communitystructurepseudofractalweb}.
+
+By the \emph{detection problem} we mean, throughout, the comparison of the two models
 of Eqs.~\eqref{eq:R}--\eqref{eq:Psplit} on this family of lattices, regarded as
 a statistical-mechanics problem in its own right: $\logR$ plays the role of a
 free energy, the statistics $\bm v$ the role of couplings, and $M$ the role of
@@ -580,8 +580,8 @@ evidence and the prediction
 $\delta_t\simeq\frac{2(b-1)}{b\ln b}\frac{t\ln s+1}{s^{t}}$ of
 Eq.~\eqref{eq:delta} agree to four significant figures by $t=12$ and better
 beyond, and the density reaches $0.693133$ against $\ln2=0.693147$ at $t=20$.
-The approach to $\ln K$ is thus not merely observed but accounted for, term by
-term, by the seam mode of the RG map: the deficit is the price of the $b^t$
+The approach to $\ln K$ is thus accounted for by the seam mode of the RG map:
+the deficit is the price of the $b^t$
 crossing edges still present at generation $t$, and it decays at the rate set
 by the spectral gap $1/s$.
 
@@ -611,14 +611,14 @@ by the spectral gap $1/s$.
   \end{tabular}
 \end{table}
 
-The transient of the flow is equally instructive. At $t=1$ block~2 is a single
+The early generations behave differently. At $t=1$ block~2 is a single
 edgeless vertex, $u_{\rm in}^{(2)}=0$, and the trajectory in
 Fig.~\ref{fig:data}(b) starts far from the fixed point; there the surprise is
 small and the $O(\ln m)$ remainder of Eq.~\eqref{eq:dc}---the Occam cost of
-the extra block affinities---dominates, making $\logR_{\rm dc}$ negative: a
-partition is the more complex hypothesis and must earn its keep. Since the
-seam mode decays by $1/s$ per generation, the densities lock onto $(K,0)$
-within a few generations and the extensive $\ln K$ term takes over. Prior
+the extra block affinities---dominates, making $\logR_{\rm dc}$ negative: the
+partition is the more complex hypothesis, and it is rejected until the
+structural term outweighs that cost. Since the seam mode decays by $1/s$ per
+generation, the densities converge to $(K,0)$ within a few generations and the extensive $\ln K$ term takes over. Prior
 insensitivity follows likewise: $\alpha$ enters only through the $O(\ln m)$
 Occam terms.
 
@@ -696,7 +696,7 @@ in three identifiable ways.
 \emph{(i) Near threshold.} By Eq.~\eqref{eq:delta} the exact crossing generation
 equals Eq.~\eqref{eq:tstar} whenever
 $L\le(1-\delta_{t_\star})(\ln K)(bs)^{t_\star}$, and is larger otherwise. The
-misfire window has relative width $\delta_{t_\star}\sim
+window in which the estimate fails has relative width $\delta_{t_\star}\sim
 t_\star\ln s/s^{t_\star}$ and closes as $L$ grows. Table~\ref{tab:validity}
 gives the comparison across the family: for $L\gtrsim10^5$
 Eq.~\eqref{eq:tstar} is exact for every lattice tested, whereas at the
@@ -711,8 +711,8 @@ logarithm in Eq.~\eqref{eq:tstar} vanishes, so the estimate is undefined
 ($t_\star\to-\infty$). This is not a removable singularity but a statement
 about the physics: at $q=1/2$ the crossing is decided not by the extensive
 $\ln K$ term at all but by the sign change of the $O(\ln m)$ Occam remainder
-during the transient, i.e.\ by the moment the split first repays its own
-complexity. The exact rule Eq.~\eqref{eq:cross} handles this without
+during the transient, that is, by the generation at which the structural term
+first outweighs the complexity cost. The exact rule Eq.~\eqref{eq:cross} handles this without
 modification and gives $t_\star=2$ for every member of the family we have
 examined ($\logR_{\rm dc}=-0.25$ at $t=1$ and $+0.03$ at $t=2$ for the
 diamond), hence $\rk=n_2$: for $(b,s)=(2,2),(3,2),(4,2),(2,3),(2,4),(3,3)$ this
@@ -752,8 +752,7 @@ expression whose correction is known and given in Eq.~\eqref{eq:delta}.
 \subsection{Two readings of $\rk$}
 \label{sec:tworeadings}
 
-It is worth separating two things that the literature so far has treated
-together. The first reading of $\rk$ is \emph{the crossing}: the smallest
+Two readings of $\rk$ have so far been used interchangeably. The first is \emph{the crossing}: the smallest
 member of the family whose exact evidence clears the threshold,
 Eq.~\eqref{eq:cross}. The second is \emph{the slope}: extract the asymptotic
 growth rate $\sigma$ of $\logR$ by fitting the large-$n$ behavior, then invert
@@ -763,7 +762,7 @@ equivalent, and in what way.
 The slope reading is asymptotically correct---indeed we can now dispense with
 the fit altogether, since Eq.~\eqref{eq:lnK} \emph{derives} the slope,
 $\sigma=\ln K$ per edge, with no free parameters---but as a way of locating
-$\rk$ it is quantitatively wrong in exactly the regime that matters.
+$\rk$ it is quantitatively wrong in the regime used in practice.
 Table~\ref{tab:validity} shows the discrepancy: at $q=0.99$ the slope-based
 estimate places the crossing of the diamond at $t_\star=2$ ($n=12$) where the
 exact rule gives $t_\star=3$ ($n=44$), a factor of nearly four in size; for
@@ -955,9 +954,10 @@ infinite-range, degree-weighted antiferromagnetic penalty,
   \label{fig:rb}
 \end{figure*}
 
-The first term wants a single community (all aligned); the second penalizes any
-net degree-weighted magnetization, rewarding a \emph{balanced bipartition}.
-Their competition is exactly what the resolution $\gamma$ controls.
+The first term favors a single community (all spins aligned); the second
+penalizes any net degree-weighted magnetization, and so favors a
+\emph{balanced bipartition}. The resolution $\gamma$ sets the balance between
+them.
 
 \subsection{Which partition is the ground state}
 \label{sec:gs}
@@ -1073,9 +1073,8 @@ i.e.\ an optimal depth
   \label{eq:dstar}
 \end{equation}
 with maximal modularity $Q_\star = 1 - 2\sqrt{\gamma}\,2^{-t/2}\to1$. The
-optimal cut is thus at \emph{half the depth of the lattice}: the geometric
-midpoint of its own hierarchy, a statement that involves neither $n$ nor $m$
-and is the invariant content of the result. The corresponding number of
+optimal cut is thus at \emph{half the depth of the lattice}, a statement that
+involves neither $n$ nor $m$. The corresponding number of
 communities is
 \begin{equation}
   K_{\rm opt}=2^{d_\star}=\sqrt{\gamma}\;2^{t/2}
@@ -1093,7 +1092,7 @@ against $\ln n$ over the five largest sizes gives a slope of $0.250$
 [Fig.~\ref{fig:hier}(b)], against $1/4$ from Eq.~\eqref{eq:Kopt}. We confirm
 $d_\star=\lfloor t/2\rfloor$ at $\gamma=1$ by exact construction through $t=9$.
 The number of Potts states that optimally describes the network therefore grows
-with the network, without bound, though more slowly than the linear dimension.
+with the network without bound, as $n^{1/4}$.
 
 This is the diamond counterpart of the growing-$K$ hierarchy of the
 pseudofractal web~\cite{vazquez2026communitystructurepseudofractalweb}, reached
@@ -1145,9 +1144,8 @@ Sec.~\ref{sec:hier} that the RB energy at resolution $\gamma$ selects the
 depth-$d_\star$ partition as its ground state. Equation~\eqref{eq:pottsRG}
 below is exactly that local ferromagnetic recursion, and it does not contain
 the penalty; the penalty enters the argument only through the ground-state
-selection of Secs.~\ref{sec:gs} and~\ref{sec:hier}. We state this explicitly to
-avoid any suggestion that the infinite-range term has been decimated---it has
-not, and it need not be, since it does not move $T_c$.
+selection of Secs.~\ref{sec:gs} and~\ref{sec:hier}. The infinite-range term is
+thus not decimated, and does not need to be, since it does not move $T_c$.
 
 A Potts bond is described by a same-colour weight $A$ and a different-colour
 weight $B$, and one generation acts by the exact series and parallel laws
@@ -1185,12 +1183,11 @@ coupling $J/k_BT_c=-\ln r_\star$, and its derivative
 $\lambda_T=f'(r_\star)$ is the thermal eigenvalue, with correlation-length
 exponent $\nu=\ln s/\ln\lambda_T$.
 
-One point deserves care here, because the numerics invite a wrong reading. The
-order parameter $\rho_K(T)$ does steepen into a step as the lattice grows, for
-every $K$ [Fig.~\ref{fig:potts}(a)], and it is tempting to take the steepening
-at $K>2$ for the first-order transition familiar from the Potts model. It is
-not. Two exact diagnostics show that the transition is continuous for every $K$
-on this lattice:
+The order parameter $\rho_K(T)$ steepens into a step as the lattice grows, for
+every $K$ [Fig.~\ref{fig:potts}(a)]. That steepening is a finite-size effect
+and not the first-order jump familiar from the Potts model on Bravais lattices:
+two exact diagnostics show that the transition is continuous for every $K$
+here.
 \begin{enumerate}
 \item \emph{The width is finite size.} The $10$--$90\%$ width of the step,
       measured in units of the critical coupling, shrinks geometrically with
@@ -1210,12 +1207,11 @@ on this lattice:
       $0.010,0.001,0.0001$ at $K=2$ and $0.118,0.026,0.005$ at $K=16$---to zero
       in every case, rather than to a finite latent heat.
 \end{enumerate}
-The physical conclusions of the hierarchy are unaffected: below $T_c(K)$ the
-colour field is rigid and the imposed partition survives thermal noise
-completely as $n\to\infty$; above it the colours decorrelate. What changes is
-the characterization of the transition, which is continuous, with a
-$K$-dependent thermal eigenvalue and an exponent $\nu(K)$ that decreases from
-$1.338$ at $K=2$ toward $1/2$ at large $K$.
+Below $T_c(K)$ the colour field is therefore rigid and the imposed partition
+survives thermal noise completely as $n\to\infty$; above it the colours
+decorrelate. The transition is continuous, with a $K$-dependent thermal
+eigenvalue and an exponent $\nu(K)$ that decreases from $1.338$ at $K=2$ toward
+$1/2$ at large $K$.
 
 \begin{table}[tb]
   \centering
