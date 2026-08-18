@@ -1,7 +1,7 @@
 Highlights
 
-The Ramsey community number is an exact renormalization-group crossing
-Growth maps the block statistics linearly: volume eigenvalue bs, seam b
-Bayesian evidence per edge flows to ln K at a community fixed point
-Plain and degree-corrected detection differ only by a node-labelling prior
-The optimal hierarchy stays thermally rigid up to k_B T_c/J = 3/(2 ln K)
+A network must reach a minimum size before its communities become detectable
+On a self-similar lattice that size is derived exactly, not read off a curve
+Each growth step thins the boundary between communities, so detection improves
+Evidence per edge settles at ln K for K communities, whatever the lattice
+The best partition is a growing hierarchy that is also a stable thermal phase
