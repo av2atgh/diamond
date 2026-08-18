@@ -446,9 +446,9 @@ genuinely different, and a much larger separation between them is reported for
 the pseudofractal web~\cite{vazquez2026communitystructurepseudofractalweb};
 what the present calculation shows is that the separation must be attributed to
 whichever of the two effects---degree correction or the labelling prior---is
-actually responsible, and that on the diamond it is entirely the latter. (ii) The
-entire gap between the ``plain'' and ``degree-corrected'' curves as previously
-reported is $\Lambda_t$. In the labelled convention both densities converge to
+actually responsible, and that on the diamond it is entirely the latter. (ii) On this
+lattice the whole gap between the ``plain'' and the ``degree-corrected'' curve
+is $\Lambda_t$. In the labelled convention both densities converge to
 \begin{equation}
   \frac{\logR}{m}\ \longrightarrow\ \Big(1-\frac{n}{m}\Big)\ln K ,
   \label{eq:labelled_density}
@@ -1309,7 +1309,14 @@ form is asymptotic: it reproduces the exact crossing only for
 $L=\ln[q/(1-q)]\gtrsim10^5$, and at the certainties used in practice it
 underestimates $\rk$ by one or two generations, because the evidence density is
 then still $37$--$63\%$ short of $\ln K$ (Secs.~\ref{sec:asymptotic}
-and~\ref{sec:tworeadings}).
+and~\ref{sec:tworeadings}). Conditioned on the same partition, the plain and
+the degree-corrected evidence agree to $O(\ln m)$ and give the same $\rk$,
+because the bundle cut is balanced in node number and in degree; the two curves
+are separated by the node-labelling prior alone, worth $n\ln K$, and the ratio
+of the evidence densities with and without that prior is $(1-n/m)^{-1}$, which
+takes the value $2$ on a lattice with $n/m\to1/2$ such as the pseudofractal
+web~\cite{vazquez2026communitystructurepseudofractalweb}
+(Sec.~\ref{sec:priors}).
 
 The same lattice carries a thermodynamic counterpart. The ground state of the
 Reichardt--Bornholdt Hamiltonian is the staggered cut, lower than the bundle cut
@@ -1319,17 +1326,10 @@ persists as $n\to\infty$, for every resolution $\gamma>0$ (Sec.~\ref{sec:rb}).
 The modularity-optimal refinement is a nested hierarchy cut at half the depth of
 the lattice, with $K_{\rm opt}=\sqrt{\gamma}\,m^{1/4}$ communities
 (Sec.~\ref{sec:hier}), and each level orders at its own temperature, with
-$k_BT_c/J\to3/(2\ln K)$ (Sec.~\ref{sec:pottsT}).
-
-Two comparisons reported previously require correction. First, degree
-correction and the node-labelling prior are distinct effects. The bundle cut of
-this lattice is balanced in node number and in degree, so the plain and
-degree-corrected evidences agree to $O(\ln m)$ and give the same $\rk$; what
-separates them is the labelling prior alone, worth $n\ln K$, and the ratio of
-the two evidence densities is $(1-n/m)^{-1}$ (Sec.~\ref{sec:priors}). Second,
-the sharpening of the community order parameter with size is finite-size scaling
-at a continuous transition, for every $K$, and not the onset of a first-order
-jump (Sec.~\ref{sec:pottsT}).
+$k_BT_c/J\to3/(2\ln K)$. That transition is continuous for every $K$: the
+sharpening of the order parameter with size is finite-size scaling of width
+$\lambda_T^{-t}$, and the energy density carries no latent heat
+(Sec.~\ref{sec:pottsT}).
 
 Several directions follow. The nested hierarchy found here has its optimal cut
 at half the depth of the lattice, a statement free of lattice-specific
